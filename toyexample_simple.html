@@ -55,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to our Physics based Deep Learning Experiments" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -99,9 +98,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="toyexample.html">
    A Toy Example
   </a>
  </li>
@@ -144,11 +143,14 @@ const thebe_selector_output = ".output, .cell_output"
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/toyexample.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+        <a class="dropdown-buttons"
+            href="_sources/toyexample_simple.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/toyexample_simple.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -166,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftoyexample.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftoyexample_simple.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -187,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/toyexample.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/toyexample_simple.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -222,64 +224,39 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/srinath2022/physics-based-DL/blob/master/toyexample.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="a-toy-example">
-<h1>A Toy Example<a class="headerlink" href="#a-toy-example" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="a-toy-example">
+<span id="python-by-example"></span><h1>A Toy Example<a class="headerlink" href="#a-toy-example" title="Permalink to this headline">¶</a></h1>
 <p>We will start off by considering a toy example of tossing a coin and eventually add air resistance etc. Let us begin by writing down the velocity and displacement equations of a point mass object thrown vertically above the ground with an initial velocity <span class="math notranslate nohighlight">\(u_0\)</span>.</p>
 <p>Under the effect of gravity, the velocity of the object at any time instant from start(<span class="math notranslate nohighlight">\(t=0\)</span>) is given by</p>
 <p><span class="math notranslate nohighlight">\( v_t = u_0 + gt \)</span></p>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> represents acceleration due to gravity <span class="math notranslate nohighlight">\(\sim 10 \frac{m}{s^2}\)</span></p>
 <p>Also, the displacement covered by the point mass is given by</p>
 <p><span class="math notranslate nohighlight">\( s_t = u_0t + \frac{1}{2}gt^2 \)</span></p>
-<div class="cell docutils container">
+<div class="cell docutils container" id="whileloopprog">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## mks units </span>
-<span class="n">u_int</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.8</span>
-<span class="n">throw_flag</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span><span class="n">ds</span>
-<span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="n">u_int</span> <span class="o">=</span> <span class="n">v</span>
-<span class="k">while</span><span class="p">(</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-  <span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
-  <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
-  <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
-  <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  
-  <span class="n">u_int</span> <span class="o">=</span> <span class="n">v</span>
-
-<span class="c1"># Plot the displacement</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vert_disp</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts_length</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">ϵ_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ts_length</span><span class="p">:</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+    <span class="n">ϵ_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ϵ_values</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/toyexample_3_0.png" src="_images/toyexample_3_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Commenting out as this is not use currently</span>
-<span class="c1"># !pip install --upgrade --quiet git+https://github.com/tum-pbs/PhiFlow@develop</span>
-<span class="c1"># import numpy as np</span>
-<span class="c1"># from phi.flow import *</span>
-<span class="c1"># import torch</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ts_length</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">ϵ_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -310,14 +287,7 @@ const thebe_selector_output = ".output, .cell_output"
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome to our Physics based Deep Learning Experiments</p>
-        </div>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
