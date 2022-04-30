@@ -353,12 +353,8 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">ReLU</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">sigmd</span> <span class="o">=</span> <span class="n">Sigmoid</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span> <span class="o">=</span> <span class="n">Tanh</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">elu</span>  <span class="o">=</span> <span class="n">ELU</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="o">=</span> <span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">leaky</span> <span class="o">=</span> <span class="n">LeakyReLU</span><span class="p">()</span>
+    
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -398,68 +394,68 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>103201
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101807
 cpu
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, epoch loss 6320.83643
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, epoch loss 8601.32812
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2, epoch loss 328.24454
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2, epoch loss 439.68661
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3, epoch loss 44.12477
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3, epoch loss 57.90038
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4, epoch loss 38.97651
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4, epoch loss 56.13284
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5, epoch loss 29.34136
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5, epoch loss 44.07001
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6, epoch loss 29.44813
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6, epoch loss 40.53927
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7, epoch loss 25.35828
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7, epoch loss 37.87143
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8, epoch loss 24.80170
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8, epoch loss 36.55722
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9, epoch loss 28.81322
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9, epoch loss 31.17246
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10, epoch loss 25.27565
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10, epoch loss 32.94883
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11, epoch loss 26.05526
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11, epoch loss 30.90557
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12, epoch loss 24.71333
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12, epoch loss 29.29905
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13, epoch loss 29.68695
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13, epoch loss 30.57835
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14, epoch loss 22.12502
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14, epoch loss 32.32584
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15, epoch loss 23.33640
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15, epoch loss 29.88432
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16, epoch loss 25.95144
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16, epoch loss 34.34993
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17, epoch loss 24.85985
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17, epoch loss 28.51720
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18, epoch loss 25.35549
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18, epoch loss 32.25441
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19, epoch loss 24.98141
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19, epoch loss 33.30997
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20, epoch loss 27.55742
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20, epoch loss 32.59531
 Fininshed training 
 </pre></div>
 </div>
@@ -468,45 +464,60 @@ Fininshed training
 <p>Inference: Given timestamps and initial velocity, let us predict the displacement and velocity at an instant of time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_int</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
-<span class="n">upper_time</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">u_int</span><span class="o">/</span><span class="mf">9.8</span><span class="p">)</span>
-<span class="n">inps</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
-<span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>  
-<span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">ds</span>
-<span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
-<span class="k">while</span><span class="p">(</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">upper_time</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+  <span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.001</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
+  <span class="n">upper_time</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">u_int</span><span class="o">/</span><span class="mf">9.8</span><span class="p">)</span>
+  <span class="n">inps</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
-  <span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
-  <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+
+  <span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>  
+  <span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">vert_vel</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
   <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
-  <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="n">ds</span>
+  <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+  <span class="n">vert_vel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
   <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
-  <span class="n">t</span> <span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
-<span class="n">inps</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
-<span class="n">inps</span> <span class="o">=</span> <span class="n">inps</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="n">op</span>  <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
-<span class="n">op</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-<span class="c1"># op = list(zip(op, np.array(vert_disp)))</span>
-<span class="c1"># print(op)</span>
-<span class="c1">#x = np.linspace(1, t, 1/dt)</span>
-<span class="c1"># Plot the displacement</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement and velocity&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+  <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">while</span><span class="p">(</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">upper_time</span><span class="p">):</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+    <span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
+    <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">vert_vel</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">t</span> <span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span> <span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+  <span class="n">inps</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
+  <span class="n">inps</span> <span class="o">=</span> <span class="n">inps</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">op</span>  <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
+  <span class="n">op</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">op</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">vert_disp</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">vert_vel</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement and velocity&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">u_int</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;initial velocities in range 0-100, </span><span class="si">{</span><span class="n">u_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">u_int</span> <span class="o">=</span> <span class="mi">130</span>
+<span class="n">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;initial velocities out of range 0-100, </span><span class="si">{</span><span class="n">u_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/toyexample_8_0.png" src="_images/toyexample_8_0.png" />
+<img alt="_images/toyexample_8_1.png" src="_images/toyexample_8_1.png" />
 </div>
 </div>
 </div>
