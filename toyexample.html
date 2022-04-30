@@ -234,37 +234,46 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Linear</span><span class="p">,</span> <span class="n">Sigmoid</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">Tanh</span><span class="p">,</span> <span class="n">BatchNorm1d</span><span class="p">,</span> <span class="n">ELU</span><span class="p">,</span> <span class="n">LeakyReLU</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## mks units </span>
-<span class="n">u_int</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prediction of path using physics alone without any external variables</span>
+<span class="c1">#inital velocity</span>
+<span class="n">u_int</span> <span class="o">=</span> <span class="mf">79.9</span>
+<span class="c1"># acceleration due to gravity</span>
 <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.8</span>
-<span class="n">throw_flag</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
 <span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span><span class="n">ds</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">ds</span>
 <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="n">u_int</span> <span class="o">=</span> <span class="n">v</span>
+<span class="n">data_pair</span> <span class="o">=</span> <span class="p">[]</span>  
 <span class="k">while</span><span class="p">(</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
   <span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
   <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
   <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
   <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  
+  <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
   <span class="n">u_int</span> <span class="o">=</span> <span class="n">v</span>
+  
 
 <span class="c1"># Plot the displacement</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vert_disp</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -275,13 +284,229 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Commenting out as this is not use currently</span>
-<span class="c1"># !pip install --upgrade --quiet git+https://github.com/tum-pbs/PhiFlow@develop</span>
-<span class="c1"># import numpy as np</span>
-<span class="c1"># from phi.flow import *</span>
-<span class="c1"># import torch</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate Ground truth data using for toss experiment without any external variables</span>
+<span class="n">data</span> <span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+  <span class="c1">#random inital velocity</span>
+  <span class="n">u_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+  <span class="n">u_int</span> <span class="o">=</span> <span class="n">u_int</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="c1"># acceleration due to gravity</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.8</span>
+  <span class="c1"># random time steps for experiment between 0.01 to 0.001</span>
+  
+  <span class="n">dt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
+  <span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+  <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="n">ds</span>
+  <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+  <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s</span><span class="p">,</span><span class="n">v</span><span class="p">])]</span>
+  <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+  <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pair</span><span class="p">))</span> 
+  <span class="k">while</span><span class="p">(</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="n">dt</span>
+    <span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">pair</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s</span><span class="p">,</span><span class="n">v</span><span class="p">])])</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>Let us try to learn trajectory of the ball using supervised learning. The input to our model is intial veclocity and timestamp which which return us the velocity at an instant and displacement in the air.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">optimizer</span>
+
+<span class="c1">## Train a neural network with supervised learning</span>
+
+<span class="k">class</span> <span class="nc">PhysicsData</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+  <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="n">training_data</span> <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)])</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">num_samples</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):])</span>
+
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">physicsBasedLoss</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">u</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="mf">9.8</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1">## MLP used for learining data</span>
+<span class="k">class</span> <span class="nc">NewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">ReLU</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sigmd</span> <span class="o">=</span> <span class="n">Sigmoid</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span> <span class="o">=</span> <span class="n">Tanh</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">elu</span>  <span class="o">=</span> <span class="n">ELU</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bn</span> <span class="o">=</span> <span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">leaky</span> <span class="o">=</span> <span class="n">LeakyReLU</span><span class="p">()</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span>  <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">NewtonNet</span><span class="p">()</span>
+<span class="n">net</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+  <span class="n">epoch_running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">):</span>
+    <span class="n">inp</span><span class="p">,</span> <span class="n">op</span> <span class="o">=</span> <span class="n">batch</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">op</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">predicted</span><span class="p">,</span> <span class="n">op</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+    <span class="c1">#loss = physicsBasedLoss(predicted[:,1],t, predicted[:,0])</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">epoch_running_loss</span> <span class="o">=</span> <span class="n">epoch_running_loss</span><span class="o">+</span><span class="n">loss</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+    
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">, epoch loss </span><span class="si">{</span><span class="n">epoch_running_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fininshed training &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>103201
+cpu
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, epoch loss 6320.83643
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2, epoch loss 328.24454
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3, epoch loss 44.12477
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4, epoch loss 38.97651
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5, epoch loss 29.34136
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6, epoch loss 29.44813
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7, epoch loss 25.35828
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8, epoch loss 24.80170
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9, epoch loss 28.81322
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10, epoch loss 25.27565
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11, epoch loss 26.05526
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12, epoch loss 24.71333
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13, epoch loss 29.68695
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14, epoch loss 22.12502
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15, epoch loss 23.33640
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16, epoch loss 25.95144
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17, epoch loss 24.85985
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18, epoch loss 25.35549
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19, epoch loss 24.98141
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20, epoch loss 27.55742
+Fininshed training 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inference: Given timestamps and initial velocity, let us predict the displacement and velocity at an instant of time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_int</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
+<span class="n">upper_time</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">u_int</span><span class="o">/</span><span class="mf">9.8</span><span class="p">)</span>
+<span class="n">inps</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>  
+<span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">u_int</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">ds</span>
+<span class="n">vert_disp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+<span class="k">while</span><span class="p">(</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">upper_time</span><span class="p">):</span>
+  <span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">u_int</span><span class="p">,</span> <span class="n">t</span><span class="p">]</span>
+  <span class="n">inps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+  <span class="n">v</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span> <span class="n">dt</span>
+  <span class="n">ds</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">u_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+  <span class="n">s</span><span class="o">+=</span> <span class="n">ds</span>
+  <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+  <span class="n">t</span> <span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
+<span class="n">inps</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
+<span class="n">inps</span> <span class="o">=</span> <span class="n">inps</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">op</span>  <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inps</span><span class="p">)</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="c1"># op = list(zip(op, np.array(vert_disp)))</span>
+<span class="c1"># print(op)</span>
+<span class="c1">#x = np.linspace(1, t, 1/dt)</span>
+<span class="c1"># Plot the displacement</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement and velocity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/toyexample_8_0.png" src="_images/toyexample_8_0.png" />
 </div>
 </div>
 </div>
