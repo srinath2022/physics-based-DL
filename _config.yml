@@ -8,8 +8,8 @@ logo: logo_phy.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  # execute_notebooks: force
-  execute_notebooks: off
+  execute_notebooks: 'off'
+  timeout: -1
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -31,6 +31,3 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-
-execute:
-  timeout: -1
