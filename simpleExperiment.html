@@ -293,6 +293,11 @@ const thebe_selector_output = ".output, .cell_output"
        2. Velocity + Physics based loss
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-physics-based-loss">
+       2. Supervised + Physics based loss
+      </a>
+     </li>
     </ul>
    </li>
   </ul>
@@ -408,6 +413,11 @@ const thebe_selector_output = ".output, .cell_output"
        2. Velocity + Physics based loss
       </a>
      </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#supervised-physics-based-loss">
+       2. Supervised + Physics based loss
+      </a>
+     </li>
     </ul>
    </li>
   </ul>
@@ -447,7 +457,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>We first show a simulation of this using pure physics equations. For simplicity let us target the velocity first, as it is linear with time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
@@ -455,7 +465,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceleration due to gravity</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Acceleration due to gravity</span>
 <span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span> <span class="c1"># m/s^2</span>
 </pre></div>
 </div>
@@ -463,7 +473,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Velocity of the particle at time step T. Initial velocity of the particle is u.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Velocity of the particle at time step T. Initial velocity of the particle is u.</span>
 <span class="k">def</span> <span class="nf">velocity_t</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">u</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">t</span>
 </pre></div>
@@ -472,7 +482,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Displacement by the particle</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Displacement by the particle</span>
 <span class="k">def</span> <span class="nf">displacement_t</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">u</span><span class="o">*</span><span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span>
 </pre></div>
@@ -481,7 +491,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">):</span>
   <span class="n">T</span> <span class="o">=</span>  <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u_initial</span><span class="o">/</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="c1"># time of flight</span>
   <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
@@ -503,7 +513,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the simulation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the simulation</span>
 <span class="k">def</span> <span class="nf">plot_simulation</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span><span class="p">):</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">)</span>
@@ -516,7 +526,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing the simulation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing the simulation</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">plot_simulation</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span><span class="p">)</span>
 </pre></div>
@@ -538,14 +548,14 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="math notranslate nohighlight">\(u, t\)</span> represent initial velocity and time step, where as <span class="math notranslate nohighlight">\(v\)</span> represents corresponding velocity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Min and Max of initial velocity (in m/s)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Min and Max of initial velocity (in m/s)</span>
 <span class="n">U0_MIN</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">U0_MAX</span> <span class="o">=</span> <span class="mi">100</span>
 
@@ -588,7 +598,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>We will be experimenting with various models, train them and try the inference.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary modules</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary modules</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
@@ -599,14 +609,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cpu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cuda:0
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">D_TYPE</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">D_TYPE</span><span class="p">):</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
@@ -619,7 +629,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the train loss curve</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the train loss curve</span>
 <span class="k">def</span> <span class="nf">loss_plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">losses</span><span class="p">):</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -635,7 +645,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let us define the appropriate dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset</span>
 <span class="k">class</span> <span class="nc">PhysicsData</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
@@ -654,7 +664,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>This is to infer the output for a single input, say at time <span class="math notranslate nohighlight">\(t\)</span>, for given initial velocity <span class="math notranslate nohighlight">\(u_0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Infer the output for a single input (at time t, given initial velocity) on the trained network.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Infer the output for a single input (at time t, given initial velocity) on the trained network.</span>
 <span class="c1"># Assuming model is already transferred to the device.</span>
 <span class="k">def</span> <span class="nf">single_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
   <span class="nb">input</span>   <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">]])</span>
@@ -678,7 +688,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Now, let us use the single inference to infer the whole simulation, given the initial velocity <span class="math notranslate nohighlight">\(u_0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulation_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulation_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">):</span>
   <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
   <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">u0</span><span class="p">)</span><span class="o">/</span><span class="n">g</span> <span class="c1"># time of flight</span>
   <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
@@ -706,7 +716,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>We write the appropriate training module to train any generic model with specified parameters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training</span>
 <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
   <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
   <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
@@ -734,7 +744,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
       <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch : </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">, loss : </span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">epoch</span><span class="o">%</span><span class="k">10</span> == 0:
+      <span class="k">if</span> <span class="n">epoch</span><span class="o">%</span><span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch : </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, loss : </span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">all_epochs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -749,7 +759,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing</span>
 <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_dataloader</span><span class="p">,</span> <span class="n">criterion</span><span class="p">):</span>
   <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
   <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
@@ -780,7 +790,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Define various models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A Simple model for predicting only Velocity</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A Simple model for predicting only Velocity</span>
 <span class="k">class</span> <span class="nc">VelocityNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -802,7 +812,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting Displacement</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting Displacement</span>
 <span class="c1"># Similar to the Velocity Model, but has more neurons.</span>
 <span class="k">class</span> <span class="nc">DisplacementNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -825,7 +835,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting both Velocity and Displacement</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting both Velocity and Displacement</span>
 <span class="k">class</span> <span class="nc">NewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -852,7 +862,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let us define custom Loss class to handle various losses we might design later</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define custom loss</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define custom loss</span>
 <span class="k">class</span> <span class="nc">CustomMSELoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">CustomMSELoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -871,7 +881,7 @@ const thebe_selector_output = ".output, .cell_output"
 We will create a dataset of 10000 entries for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_DATA_SAMPLES</span> <span class="o">=</span> <span class="mi">10000</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N_DATA_SAMPLES</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">simulation_data_velocity</span> <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
 <span class="n">train_dataset_velocity_10000</span> <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">simulation_data_velocity</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)])</span>
 <span class="n">test_dataset_velocity_10000</span> <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">simulation_data_velocity</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):])</span>
@@ -888,7 +898,7 @@ Dataset size 10000
 <p>Train the network on the velocity dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>          <span class="o">=</span> <span class="mi">8</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>          <span class="o">=</span> <span class="mi">8</span>
 <span class="n">model_v</span>             <span class="o">=</span> <span class="n">VelocityNewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_v</span>  <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_velocity_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># optimizer_v         = optim.SGD(model_v.parameters(), lr= 0.000001, momentum=0.9)</span>
@@ -901,46 +911,40 @@ Dataset size 10000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_v</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v</span><span class="p">,</span> <span class="n">train_dataloader_v</span><span class="p">,</span> <span class="n">optimizer_v</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_v</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v</span><span class="p">,</span> <span class="n">train_dataloader_v</span><span class="p">,</span> <span class="n">optimizer_v</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 220.03903
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 326.85944
+epoch : 10, loss : 0.01561
+epoch : 20, loss : 0.17811
+Done Training!
+epoch : 30, loss : 0.08867
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 10, loss : 0.11872
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 20, loss : 0.08701
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done Training!
-epoch : 30, loss : 0.08512
-</pre></div>
-</div>
-<img alt="_images/simpleExperiment_38_4.png" src="_images/simpleExperiment_38_4.png" />
+<img alt="_images/simpleExperiment_38_1.png" src="_images/simpleExperiment_38_1.png" />
 </div>
 </div>
 <p>Calculate the test loss and run few inferences to visualise the prediction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
 <span class="n">test_dataloader_v</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset_velocity_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model_v</span><span class="p">,</span> <span class="n">test_dataloader_v</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 0.21376
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 0.00935
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span> <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">,</span> <span class="n">model_v</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -954,7 +958,7 @@ epoch : 30, loss : 0.08512
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where it doesn&#39;t match exactly</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where it doesn&#39;t match exactly</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mi">9</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">,</span> <span class="n">model_v</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -968,7 +972,7 @@ epoch : 30, loss : 0.08512
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is out of dataset domain</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is out of dataset domain</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mi">230</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">,</span> <span class="n">model_v</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -985,7 +989,7 @@ epoch : 30, loss : 0.08512
 <h4>Predicting only Displacement<a class="headerlink" href="#predicting-only-displacement" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us create a similar dataset for displacement task</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us create a similar dataset for displacement task</span>
 <span class="n">N_DATA_SAMPLES</span>                    <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">simulation_data_displacement</span>      <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
 <span class="n">train_dataset_displacement_10000</span>  <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">simulation_data_displacement</span> <span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)])</span>
@@ -1002,7 +1006,7 @@ Dataset size 10000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>          <span class="o">=</span> <span class="mi">32</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>          <span class="o">=</span> <span class="mi">32</span>
 <span class="n">model_s</span>             <span class="o">=</span> <span class="n">DisplacementNewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_s</span>  <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_displacement_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># optimizer_s         = optim.SGD(model_s.parameters(), lr= 0.000001, momentum=0.9)</span>
@@ -1015,72 +1019,48 @@ Dataset size 10000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_s</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_s</span><span class="p">,</span> <span class="n">train_dataloader_s</span><span class="p">,</span> <span class="n">optimizer_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_s</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_s</span><span class="p">,</span> <span class="n">train_dataloader_s</span><span class="p">,</span> <span class="n">optimizer_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 7280.24113
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 8162.80952
+epoch : 10, loss : 63.75329
+epoch : 20, loss : 42.24356
+epoch : 30, loss : 37.44507
+epoch : 40, loss : 37.27937
+epoch : 50, loss : 40.31626
+epoch : 60, loss : 26.76985
+epoch : 70, loss : 35.68218
+epoch : 80, loss : 29.79484
+epoch : 90, loss : 26.34226
+epoch : 100, loss : 30.06333
+epoch : 110, loss : 26.04673
+Done Training!
+epoch : 120, loss : 25.59000
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 10, loss : 140.21883
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 20, loss : 116.13961
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 30, loss : 56.35876
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 40, loss : 55.29009
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 50, loss : 44.91375
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 60, loss : 45.01767
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 70, loss : 43.02254
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 80, loss : 28.08035
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 90, loss : 32.52190
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 100, loss : 23.54903
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 110, loss : 19.42104
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done Training!
-epoch : 120, loss : 24.05176
-</pre></div>
-</div>
-<img alt="_images/simpleExperiment_47_13.png" src="_images/simpleExperiment_47_13.png" />
+<img alt="_images/simpleExperiment_47_1.png" src="_images/simpleExperiment_47_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
 <span class="n">test_dataloader_s</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset_displacement_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model_s</span><span class="p">,</span> <span class="n">test_dataloader_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 20.84234
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 22.61735
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1094,7 +1074,7 @@ epoch : 120, loss : 24.05176
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is small</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is small</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">14.434</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1108,7 +1088,7 @@ epoch : 120, loss : 24.05176
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is not in dataset domain</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case where u0 is not in dataset domain</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">187.434</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1125,7 +1105,7 @@ epoch : 120, loss : 24.05176
 <h4>Predicting both Velocity and Displacement<a class="headerlink" href="#predicting-both-velocity-and-displacement" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us create a similar dataset for velocity, displacement task</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us create a similar dataset for velocity, displacement task</span>
 <span class="n">N_DATA_SAMPLES</span>                    <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">simulation_data_v_s</span>               <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">)</span>
 <span class="n">train_dataset_v_s_10000</span>           <span class="o">=</span> <span class="n">PhysicsData</span><span class="p">(</span><span class="n">simulation_data_v_s</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)])</span>
@@ -1142,7 +1122,7 @@ Dataset size 10000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>            <span class="o">=</span> <span class="mi">32</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>            <span class="o">=</span> <span class="mi">32</span>
 <span class="n">model_v_s</span>             <span class="o">=</span> <span class="n">NewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_v_s</span>  <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_v_s_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># optimizer_v_s         = optim.SGD(model_v_s.parameters(), lr=0.000001, momentum=0.9)</span>
@@ -1155,126 +1135,66 @@ Dataset size 10000
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 13894.81955
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 13822.24905
+epoch : 10, loss : 8653.06815
+epoch : 20, loss : 5378.67479
+epoch : 30, loss : 3243.59603
+epoch : 40, loss : 1880.70955
+epoch : 50, loss : 1039.88105
+epoch : 60, loss : 552.54683
+epoch : 70, loss : 295.55351
+epoch : 80, loss : 176.99002
+epoch : 90, loss : 96.57844
+epoch : 100, loss : 66.54121
+epoch : 110, loss : 50.17399
+epoch : 120, loss : 44.06991
+epoch : 130, loss : 33.01359
+epoch : 140, loss : 63.11560
+epoch : 150, loss : 38.49528
+epoch : 160, loss : 30.07233
+epoch : 170, loss : 21.95631
+epoch : 180, loss : 24.21008
+epoch : 190, loss : 30.46672
+epoch : 200, loss : 26.90120
+epoch : 210, loss : 23.27552
+epoch : 220, loss : 15.90749
+epoch : 230, loss : 17.98335
+epoch : 240, loss : 14.93066
+epoch : 250, loss : 21.92199
+epoch : 260, loss : 24.02537
+epoch : 270, loss : 31.35591
+epoch : 280, loss : 19.92082
+epoch : 290, loss : 25.65846
+Done Training!
+epoch : 300, loss : 22.81455
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 10, loss : 8732.66022
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 20, loss : 5468.53102
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 30, loss : 3356.40938
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 40, loss : 1921.30696
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 50, loss : 1078.74385
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 60, loss : 613.13968
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 70, loss : 312.79385
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 80, loss : 168.82779
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 90, loss : 102.46964
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 100, loss : 79.10246
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 110, loss : 51.11796
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 120, loss : 40.01071
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 130, loss : 35.38681
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 140, loss : 33.02609
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 150, loss : 31.85787
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 160, loss : 26.62320
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 170, loss : 26.21777
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 180, loss : 30.64683
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 190, loss : 45.55277
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 200, loss : 21.60553
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 210, loss : 21.03954
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 220, loss : 20.18913
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 230, loss : 28.15764
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 240, loss : 13.92105
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 250, loss : 27.65123
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 260, loss : 48.75745
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 270, loss : 17.10173
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 280, loss : 29.40577
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 290, loss : 24.69359
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done Training!
-epoch : 300, loss : 17.67445
-</pre></div>
-</div>
-<img alt="_images/simpleExperiment_55_31.png" src="_images/simpleExperiment_55_31.png" />
+<img alt="_images/simpleExperiment_55_1.png" src="_images/simpleExperiment_55_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
 <span class="n">test_dataloader_v_s</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset_v_s_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">avg_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model_v_s</span><span class="p">,</span> <span class="n">test_dataloader_v_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 10.69445
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 9.24421
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1290,7 +1210,7 @@ epoch : 300, loss : 17.67445
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case when u0 is small</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case when u0 is small</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">14.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1306,7 +1226,7 @@ epoch : 300, loss : 17.67445
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, case where u0 is not part of train set</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, case where u0 is not part of train set</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">157.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1330,20 +1250,23 @@ epoch : 300, loss : 17.67445
 <p>Let us try to leverage this knowledge and see if it improves our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting both Velocity and Displacement</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple model for predicting both Velocity and Displacement</span>
 <span class="k">class</span> <span class="nc">PhysicsNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
     
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span>
 </pre></div>
@@ -1359,7 +1282,7 @@ epoch : 300, loss : 17.67445
 <p><span class="math notranslate nohighlight">\(L_{physics} = |v_{predicted}^2-u_{initial}^2-2*g*s_{predicted}|\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define new loss</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define new loss</span>
 <span class="k">class</span> <span class="nc">PhysicsBasedLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">PhysicsBasedLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -1380,12 +1303,12 @@ epoch : 300, loss : 17.67445
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will be using the same datset as for velocity_displacement task.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will be using the same datset as for velocity_displacement task.</span>
 <span class="n">BATCH_SIZE</span>            <span class="o">=</span> <span class="mi">32</span>
 <span class="n">model_v_s_phy</span>         <span class="o">=</span> <span class="n">PhysicsNewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_v_s</span>  <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_v_s_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># optimizer_v_s_phy     = optim.SGD(model_v_s_phy.parameters(), lr=0.0001, momentum=0.9)</span>
-<span class="n">optimizer_v_s_phy</span>     <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_phy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
+<span class="n">optimizer_v_s_phy</span>     <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_phy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="p">)</span>
 <span class="n">criterion</span>             <span class="o">=</span> <span class="n">PhysicsBasedLoss</span><span class="p">()</span>
 <span class="n">epochs</span>                <span class="o">=</span> <span class="mi">200</span>
 </pre></div>
@@ -1394,82 +1317,42 @@ epoch : 300, loss : 17.67445
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_phy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_phy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 104112.08491
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 96656.96452
+epoch : 10, loss : 313.23299
+epoch : 20, loss : 147.61090
+epoch : 30, loss : 137.09389
+epoch : 40, loss : 169.79906
+epoch : 50, loss : 128.70054
+epoch : 60, loss : 117.07415
+epoch : 70, loss : 140.31452
+epoch : 80, loss : 165.58238
+epoch : 90, loss : 134.05531
+epoch : 100, loss : 151.84270
+epoch : 110, loss : 164.55105
+epoch : 120, loss : 172.79915
+epoch : 130, loss : 99.61577
+epoch : 140, loss : 141.64114
+epoch : 150, loss : 152.37413
+epoch : 160, loss : 137.16883
+epoch : 170, loss : 137.62961
+epoch : 180, loss : 144.48976
+epoch : 190, loss : 108.09570
+Done Training!
+epoch : 200, loss : 190.58304
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 10, loss : 13963.65208
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 20, loss : 4787.30192
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 30, loss : 3736.41270
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 40, loss : 3126.30853
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 50, loss : 2224.78505
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 60, loss : 2693.71675
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 70, loss : 3246.60742
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 80, loss : 3014.32449
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 90, loss : 2617.61745
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 100, loss : 2695.13174
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 110, loss : 2426.98147
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 120, loss : 2935.87657
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 130, loss : 2520.69217
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 140, loss : 2338.07849
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 150, loss : 1968.73798
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 160, loss : 2544.84119
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 170, loss : 1943.19628
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 180, loss : 1559.95023
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 190, loss : 2529.77292
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done Training!
-epoch : 200, loss : 2109.57365
-</pre></div>
-</div>
-<img alt="_images/simpleExperiment_66_21.png" src="_images/simpleExperiment_66_21.png" />
+<img alt="_images/simpleExperiment_66_1.png" src="_images/simpleExperiment_66_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1483,18 +1366,52 @@ epoch : 200, loss : 2109.57365
 <img alt="_images/simpleExperiment_67_1.png" src="_images/simpleExperiment_67_1.png" />
 </div>
 </div>
-<p>First of all, the model hasn’t converged. However, the predictions make sense as we are not using the time input anywhere in our loss, so predicting a constant number over time is fine. The wonder is, for every <span class="math notranslate nohighlight">\(u\)</span>, why can’t it predict some <span class="math notranslate nohighlight">\(v_t, s_t\)</span> such that the physics relation between them hold?. Need to run more experiments on this to come to a conclusive argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, smaller velocity</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">14.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_68_0.png" src="_images/simpleExperiment_68_0.png" />
+<img alt="_images/simpleExperiment_68_1.png" src="_images/simpleExperiment_68_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, out of domain velocity</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">144.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_phy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_69_0.png" src="_images/simpleExperiment_69_0.png" />
+<img alt="_images/simpleExperiment_69_1.png" src="_images/simpleExperiment_69_1.png" />
+</div>
+</div>
+<p>First of all, the model hasn’t converged fully. However, the predictions make sense as we are not using the time input. The model just learns to predict <span class="math notranslate nohighlight">\(v_t, s_t\)</span>, such that the physics equation holds, but they need not be consistent with the one’s we are expecting in a flight. In this case, looks like the model is predictin <span class="math notranslate nohighlight">\(s_t=0\)</span>, and therefore <span class="math notranslate nohighlight">\(v_t\sim u_0\)</span>.</p>
 </div>
 <div class="section" id="velocity-physics-based-loss">
 <h4>2. Velocity + Physics based loss<a class="headerlink" href="#velocity-physics-based-loss" title="Permalink to this headline">¶</a></h4>
 <p>Let us try the folowing loss where we try to make the velocity closer to actual velocity but provide no ground truth information on displacement, rather we make use of the relation between <span class="math notranslate nohighlight">\(v_t\)</span>, <span class="math notranslate nohighlight">\(s_t\)</span> to guide the learning.</p>
-<p><span class="math notranslate nohighlight">\(L_{velocity+phy} = |v_{predicted}-v_{actual})|+|v_{predicted}-u_{initial}^2-2*g*s_{predicted}|\)</span></p>
+<p><span class="math notranslate nohighlight">\(L_{velocity+phy} = (v_{predicted}-v_{actual})^2+\gamma*(v_{predicted}^2-u_{initial}^2-2*g*s_{predicted})^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> is used to control weightage given to the physics term.</p>
 <p>This will go to <span class="math notranslate nohighlight">\(0\)</span> only when <span class="math notranslate nohighlight">\(v_{predicted} = v_{actual}\)</span> and <span class="math notranslate nohighlight">\(v_{predicted}^2-u_{initial}^2 = 2*g*s_{predicted}\)</span>, both of which yield correct prediction for <span class="math notranslate nohighlight">\(v_t\)</span> and <span class="math notranslate nohighlight">\(s_t\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VelocityPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VelocityPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">VelocityPlusPhysicsBasedLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
 
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
     <span class="n">v_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
@@ -1503,13 +1420,14 @@ epoch : 200, loss : 2109.57365
     <span class="n">v_square_from_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">u_initial</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">s_predicted</span><span class="p">)</span>
     <span class="n">v_square_from_predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">)</span>
     <span class="n">difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_square_from_predicted</span><span class="p">,</span> <span class="n">v_square_from_s</span><span class="p">)</span>
-    <span class="n">absolute_difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+    <span class="n">squared_difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
 
     <span class="n">v_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">,</span> <span class="n">v_actual</span><span class="p">)</span>
-    <span class="n">absolute_difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">difference_v</span><span class="p">)</span>
+    <span class="n">squared_difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_v</span><span class="p">)</span>
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">squared_difference_v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">squared_difference</span><span class="p">)</span>
 
-    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">absolute_difference_v</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">absolute_difference</span><span class="p">))</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">loss</span>
 </pre></div>
 </div>
@@ -1517,13 +1435,13 @@ epoch : 200, loss : 2109.57365
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will be using the same datset as for velocity_displacement task.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will be using the same datset as for velocity_displacement task.</span>
 <span class="n">BATCH_SIZE</span>                  <span class="o">=</span> <span class="mi">32</span>
 <span class="n">model_v_s_velocityPhy</span>       <span class="o">=</span> <span class="n">PhysicsNewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_v_s</span>        <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_v_s_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># optimizer_v_s_velocityPhy   = optim.SGD(model_v_s_velocityPhy.parameters(), lr=0.0001, momentum=0.9)</span>
 <span class="n">optimizer_v_s_velocityPhy</span>   <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_velocityPhy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
-<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">VelocityPlusPhysicsBasedLoss</span><span class="p">()</span>
+<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">VelocityPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
 <span class="n">epochs</span>                      <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
@@ -1531,112 +1449,52 @@ epoch : 200, loss : 2109.57365
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_velocityPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_velocityPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 104455.54086
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 46717.10464
+epoch : 10, loss : 1603.14304
+epoch : 20, loss : 1020.25865
+epoch : 30, loss : 707.22866
+epoch : 40, loss : 549.62411
+epoch : 50, loss : 481.62920
+epoch : 60, loss : 323.60525
+epoch : 70, loss : 192.60145
+epoch : 80, loss : 163.50053
+epoch : 90, loss : 138.71128
+epoch : 100, loss : 123.54427
+epoch : 110, loss : 110.62486
+epoch : 120, loss : 107.49929
+epoch : 130, loss : 114.39476
+epoch : 140, loss : 92.54396
+epoch : 150, loss : 95.07711
+epoch : 160, loss : 90.30181
+epoch : 170, loss : 79.81601
+epoch : 180, loss : 85.46196
+epoch : 190, loss : 78.52062
+epoch : 200, loss : 75.98794
+epoch : 210, loss : 77.43223
+epoch : 220, loss : 65.21300
+epoch : 230, loss : 75.29890
+epoch : 240, loss : 65.95640
+epoch : 250, loss : 65.82411
+epoch : 260, loss : 67.11022
+epoch : 270, loss : 66.05689
+epoch : 280, loss : 70.00466
+epoch : 290, loss : 57.88159
+Done Training!
+epoch : 300, loss : 55.53206
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 10, loss : 16394.66299
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 20, loss : 5566.58016
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 30, loss : 4657.79650
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 40, loss : 5040.87825
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 50, loss : 4598.39927
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 60, loss : 5280.73127
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 70, loss : 4685.85462
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 80, loss : 4369.91544
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 90, loss : 3926.75393
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 100, loss : 3995.32837
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 110, loss : 3653.79722
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 120, loss : 3864.22671
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 130, loss : 3475.30243
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 140, loss : 4165.98356
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 150, loss : 3356.73661
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 160, loss : 3429.65346
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 170, loss : 3391.85229
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 180, loss : 3536.06398
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 190, loss : 3366.30144
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 200, loss : 3752.73419
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 210, loss : 3469.27729
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 220, loss : 3357.55245
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 230, loss : 4042.81998
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 240, loss : 3375.67332
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 250, loss : 3419.31534
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 260, loss : 3250.50564
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 270, loss : 3681.13559
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 280, loss : 3328.08782
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 290, loss : 2979.15071
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done Training!
-epoch : 300, loss : 3154.64889
-</pre></div>
-</div>
-<img alt="_images/simpleExperiment_72_31.png" src="_images/simpleExperiment_72_31.png" />
+<img alt="_images/simpleExperiment_74_1.png" src="_images/simpleExperiment_74_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
 <span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
@@ -1646,11 +1504,193 @@ epoch : 300, loss : 3154.64889
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/simpleExperiment_73_0.png" src="_images/simpleExperiment_73_0.png" />
-<img alt="_images/simpleExperiment_73_1.png" src="_images/simpleExperiment_73_1.png" />
+<img alt="_images/simpleExperiment_75_0.png" src="_images/simpleExperiment_75_0.png" />
+<img alt="_images/simpleExperiment_75_1.png" src="_images/simpleExperiment_75_1.png" />
 </div>
 </div>
-<p>Not an expected result. Need to analyse the network/loss for implementation erros.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case when u0 is small</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">14.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_76_0.png" src="_images/simpleExperiment_76_0.png" />
+<img alt="_images/simpleExperiment_76_1.png" src="_images/simpleExperiment_76_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, case where u0 is not part of train set</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">157.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_velocityPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_77_0.png" src="_images/simpleExperiment_77_0.png" />
+<img alt="_images/simpleExperiment_77_1.png" src="_images/simpleExperiment_77_1.png" />
+</div>
+</div>
+<p>The above experiment clearly shows that even without direct supervision on <span class="math notranslate nohighlight">\(s_t\)</span>, we have obtained equivalent results compared to direct supervision.</p>
+</div>
+<div class="section" id="supervised-physics-based-loss">
+<h4>2. Supervised + Physics based loss<a class="headerlink" href="#supervised-physics-based-loss" title="Permalink to this headline">¶</a></h4>
+<p>Let us try out including both supervision and physics to guide our learning. We will use the following loss function.</p>
+<p><span class="math notranslate nohighlight">\(L_{supervised+phy} = (v_{predicted}-v_{actual})^2+(s_{predicted}-s_{actual})^2+\gamma*(v_{predicted}^2-u_{initial}^2-2*g*s_{predicted})^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> is used to control weightage given to the physics term.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">v_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">u_initial</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">v_square_from_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">u_initial</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">s_predicted</span><span class="p">)</span>
+    <span class="n">v_square_from_predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">)</span>
+    <span class="n">difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_square_from_predicted</span><span class="p">,</span> <span class="n">v_square_from_s</span><span class="p">)</span>
+    <span class="n">squared_difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+
+    <span class="c1"># supervised v term</span>
+    <span class="n">v_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">,</span> <span class="n">v_actual</span><span class="p">)</span>
+    <span class="n">squared_difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_v</span><span class="p">)</span>
+
+    <span class="c1"># supervised s term</span>
+    <span class="n">s_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">s_predicted</span><span class="p">,</span> <span class="n">s_actual</span><span class="p">)</span>
+    <span class="n">squared_difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_s</span><span class="p">)</span>
+
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">squared_difference_v</span><span class="p">,</span> <span class="n">squared_difference_s</span><span class="p">)</span>
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">squared_difference</span><span class="p">)</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will be using the same datset as for velocity_displacement task.</span>
+<span class="n">BATCH_SIZE</span>                  <span class="o">=</span> <span class="mi">32</span>
+<span class="n">model_v_s_supervisedPhy</span>     <span class="o">=</span> <span class="n">PhysicsNewtonNet</span><span class="p">()</span>
+<span class="n">train_dataloader_v_s</span>        <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset_v_s_10000</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># optimizer_v_s_velocityPhy   = optim.SGD(model_v_s_velocityPhy.parameters(), lr=0.0001, momentum=0.9)</span>
+<span class="n">optimizer_v_s_supervisedPhy</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
+<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">epochs</span>                      <span class="o">=</span> <span class="mi">300</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 13526.27496
+epoch : 10, loss : 1208.31689
+epoch : 20, loss : 764.86230
+epoch : 30, loss : 704.08001
+epoch : 40, loss : 685.12408
+epoch : 50, loss : 665.41245
+epoch : 60, loss : 657.29450
+epoch : 70, loss : 669.01104
+epoch : 80, loss : 640.74355
+epoch : 90, loss : 650.72521
+epoch : 100, loss : 550.10301
+epoch : 110, loss : 394.08387
+epoch : 120, loss : 339.72817
+epoch : 130, loss : 281.95309
+epoch : 140, loss : 260.16741
+epoch : 150, loss : 247.86872
+epoch : 160, loss : 234.68115
+epoch : 170, loss : 218.47756
+epoch : 180, loss : 205.08454
+epoch : 190, loss : 205.82687
+epoch : 200, loss : 185.10920
+epoch : 210, loss : 186.73509
+epoch : 220, loss : 162.09637
+epoch : 230, loss : 150.42273
+epoch : 240, loss : 138.67607
+epoch : 250, loss : 137.67819
+epoch : 260, loss : 131.77143
+epoch : 270, loss : 121.77422
+epoch : 280, loss : 132.17349
+epoch : 290, loss : 113.14604
+Done Training!
+epoch : 300, loss : 107.79077
+</pre></div>
+</div>
+<img alt="_images/simpleExperiment_82_1.png" src="_images/simpleExperiment_82_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_83_0.png" src="_images/simpleExperiment_83_0.png" />
+<img alt="_images/simpleExperiment_83_1.png" src="_images/simpleExperiment_83_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, a case when u0 is small</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">14.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_84_0.png" src="_images/simpleExperiment_84_0.png" />
+<img alt="_images/simpleExperiment_84_1.png" src="_images/simpleExperiment_84_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare, case where u0 is not part of train set</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">157.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/simpleExperiment_85_0.png" src="_images/simpleExperiment_85_0.png" />
+<img alt="_images/simpleExperiment_85_1.png" src="_images/simpleExperiment_85_1.png" />
+</div>
+</div>
+<p>Looks like physics guide is helping us. The plots look a bit smoother than the ones without using physics term.</p>
 </div>
 </div>
 </div>

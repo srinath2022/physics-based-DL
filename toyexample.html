@@ -55,6 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Experiments on Toy Example" href="simpleExperiment.html" />
     <link rel="prev" title="Welcome to our Physics based Deep Learning Experiments" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -103,6 +104,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    A Toy Example
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="simpleExperiment.html">
+   Experiments on Toy Example
   </a>
  </li>
 </ul>
@@ -233,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><span class="math notranslate nohighlight">\( s_t = u_0t + \frac{1}{2}gt^2 \)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -247,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prediction of path using physics alone without any external variables</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prediction of path using physics alone without any external variables</span>
 <span class="c1">#inital velocity</span>
 <span class="n">u_int</span> <span class="o">=</span> <span class="mf">79.9</span>
 <span class="c1"># acceleration due to gravity</span>
@@ -284,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate Ground truth data using for toss experiment without any external variables</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Generate Ground truth data using for toss experiment without any external variables</span>
 <span class="n">data</span> <span class="o">=</span><span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
   <span class="c1">#random inital velocity</span>
@@ -323,7 +329,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let us try to learn trajectory of the ball using supervised learning. The input to our model is intial veclocity and timestamp which which return us the velocity at an instant and displacement in the air.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">optimizer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">optimizer</span>
 
 <span class="c1">## Train a neural network with supervised learning</span>
 
@@ -394,68 +400,28 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101807
-cpu
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1, epoch loss 8601.32812
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2, epoch loss 439.68661
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3, epoch loss 57.90038
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4, epoch loss 56.13284
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5, epoch loss 44.07001
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6, epoch loss 40.53927
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7, epoch loss 37.87143
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8, epoch loss 36.55722
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9, epoch loss 31.17246
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10, epoch loss 32.94883
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11, epoch loss 30.90557
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12, epoch loss 29.29905
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13, epoch loss 30.57835
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14, epoch loss 32.32584
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15, epoch loss 29.88432
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16, epoch loss 34.34993
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17, epoch loss 28.51720
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18, epoch loss 32.25441
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19, epoch loss 33.30997
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20, epoch loss 32.59531
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>102371
+cuda:0
+1, epoch loss 8154.08643
+2, epoch loss 341.91562
+3, epoch loss 59.17967
+4, epoch loss 41.80366
+5, epoch loss 39.05590
+6, epoch loss 34.72595
+7, epoch loss 35.70509
+8, epoch loss 44.87532
+9, epoch loss 31.40994
+10, epoch loss 27.99084
+11, epoch loss 29.67614
+12, epoch loss 33.68818
+13, epoch loss 31.32074
+14, epoch loss 29.99994
+15, epoch loss 27.88099
+16, epoch loss 31.97464
+17, epoch loss 25.76676
+18, epoch loss 27.65068
+19, epoch loss 26.46015
+20, epoch loss 25.22210
 Fininshed training 
 </pre></div>
 </div>
@@ -464,7 +430,7 @@ Fininshed training
 <p>Inference: Given timestamps and initial velocity, let us predict the displacement and velocity at an instant of time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
   <span class="n">vert_disp</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.001</span>
   <span class="n">t</span> <span class="o">=</span> <span class="n">dt</span>
@@ -512,6 +478,7 @@ Fininshed training
 
 <span class="n">u_int</span> <span class="o">=</span> <span class="mi">130</span>
 <span class="n">inferTrajectory</span><span class="p">(</span><span class="n">u_int</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;initial velocities out of range 0-100, </span><span class="si">{</span><span class="n">u_int</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
@@ -553,6 +520,13 @@ Fininshed training
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Welcome to our Physics based Deep Learning Experiments</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="simpleExperiment.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Experiments on Toy Example</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
