@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: toyexample
-- file: simpleExperiment
-- file: simpleExperimentWithAir
+- file: AGentleStart
+# - file: simpleExperiment
+# - file: simpleExperimentWithAir
