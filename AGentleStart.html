@@ -262,17 +262,17 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-and-loss">
-     Model and Loss
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Training
+     Dataset, Model and Loss
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
      Inference
     </a>
    </li>
@@ -282,13 +282,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#comparison">
    Comparison
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-to-be-updated">
-     Plot-To-Be-Updated
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
@@ -368,17 +361,17 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-and-loss">
-     Model and Loss
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Training
+     Dataset, Model and Loss
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
      Inference
     </a>
    </li>
@@ -388,13 +381,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#comparison">
    Comparison
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-to-be-updated">
-     Plot-To-Be-Updated
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
@@ -634,8 +620,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="n">N_DATA_SAMPLES</span>      <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">dataset</span>             <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
-<span class="n">dataset_train</span>  <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)]</span>
-<span class="n">dataset_test</span>   <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):]</span>
+<span class="n">dataset_train</span>       <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)]</span>
+<span class="n">dataset_test</span>        <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):]</span>
 </pre></div>
 </div>
 </div>
@@ -658,6 +644,8 @@ Dataset size 10000
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The physics model</span>
 <span class="k">def</span> <span class="nf">physics_displacement_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
   <span class="n">s_t</span> <span class="o">=</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span>
+  <span class="k">if</span> <span class="n">s_t</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mf">0.0</span>
   <span class="k">return</span> <span class="n">s_t</span>
 </pre></div>
 </div>
@@ -710,7 +698,7 @@ Dataset size 10000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Only Physics Loss  19118.704045425322
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Only Physics Loss  18032.37606143409
 </pre></div>
 </div>
 </div>
@@ -846,18 +834,18 @@ Dataset size 10000
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 9625.32639
-epoch : 10, loss : 677.39858
-epoch : 20, loss : 488.64261
-epoch : 30, loss : 193.72199
-epoch : 40, loss : 146.73181
-epoch : 50, loss : 141.98816
-epoch : 60, loss : 136.46464
-epoch : 70, loss : 128.80924
-epoch : 80, loss : 73.16735
-epoch : 90, loss : 56.78242
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 8479.95282
+epoch : 10, loss : 6194.43660
+epoch : 20, loss : 6163.41603
+epoch : 30, loss : 6178.98894
+epoch : 40, loss : 6209.79873
+epoch : 50, loss : 2306.33343
+epoch : 60, loss : 553.49150
+epoch : 70, loss : 96.28482
+epoch : 80, loss : 63.94182
+epoch : 90, loss : 55.52834
 Done Training!
-epoch : 100, loss : 46.61545
+epoch : 100, loss : 48.12773
 </pre></div>
 </div>
 <img alt="_images/AGentleStart_25_1.png" src="_images/AGentleStart_25_1.png" />
@@ -873,7 +861,7 @@ epoch : 100, loss : 46.61545
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 51.13923
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 42.08064
 </pre></div>
 </div>
 </div>
@@ -945,20 +933,25 @@ epoch : 100, loss : 46.61545
 <div class="section" id="supervised-physics-based-loss">
 <h3>Supervised + Physics based loss<a class="headerlink" href="#supervised-physics-based-loss" title="Permalink to this headline">¶</a></h3>
 <p>Let us try out including both supervision and physics to guide our learning. We will use the following loss function.</p>
-<p><span class="math notranslate nohighlight">\(L_{supervised+phy} = (s_{predicted}-s_{actual})^2+\gamma*(s_{predicted}-(u_{initial}t-\frac{1}{2}*g*t^2))^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(L_{supervised+phy} = (v_{predicted}-v_{actual})^2+(s_{predicted}-s_{actual})^2+\gamma*(v_{predicted}^2-u_{initial}^2-2*g*s_{predicted})^2\)</span></p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> is used to control weightage given to the physics term.</p>
 </div>
-<div class="section" id="model-and-loss">
-<h3>Model and Loss<a class="headerlink" href="#model-and-loss" title="Permalink to this headline">¶</a></h3>
-<p>Let use define a new model and the loss function for this method.</p>
+<div class="section" id="id1">
+<h3>Dataset, Model and Loss<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Let use define a new model to predict both velocity and displacement, corresponding loss function for this method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PhysicsNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N_DATA_SAMPLES</span>      <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">dataset</span>             <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+<span class="n">dataset_train</span>       <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)]</span>
+<span class="n">dataset_test</span>        <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):]</span>
+
+<span class="k">class</span> <span class="nc">PhysicsNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
     
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -975,23 +968,26 @@ epoch : 100, loss : 46.61545
     <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
 
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="n">s_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">v_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">u_initial</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
-    <span class="n">t_data</span>    <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">v_square_from_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">u_initial</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">s_predicted</span><span class="p">)</span>
+    <span class="n">v_square_from_predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">)</span>
+    <span class="n">difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_square_from_predicted</span><span class="p">,</span> <span class="n">v_square_from_s</span><span class="p">)</span>
+    <span class="n">squared_difference</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+
+    <span class="c1"># supervised v term</span>
+    <span class="n">v_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">v_predicted</span><span class="p">,</span> <span class="n">v_actual</span><span class="p">)</span>
+    <span class="n">squared_difference_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_v</span><span class="p">)</span>
 
     <span class="c1"># supervised s term</span>
-    <span class="n">s_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">s_predicted</span><span class="p">,</span> <span class="n">s_actual</span><span class="p">)</span>
     <span class="n">squared_difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_s</span><span class="p">)</span>
 
-    <span class="c1"># s from u, t</span>
-    <span class="n">ut</span>        <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t_data</span><span class="p">)</span>
-    <span class="n">half_gt2</span>  <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t_data</span><span class="p">,</span> <span class="n">t_data</span><span class="p">)</span>
-    <span class="n">s_physics</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">ut</span><span class="p">,</span> <span class="n">half_gt2</span><span class="p">)</span>
-    <span class="n">difference_s_phy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">s_predicted</span><span class="p">,</span> <span class="n">s_physics</span><span class="p">)</span>
-    <span class="n">squared_difference_s_phy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_s_phy</span><span class="p">)</span>
-
-    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">squared_difference_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">squared_difference_s_phy</span><span class="p">)</span>
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">squared_difference_v</span><span class="p">,</span> <span class="n">squared_difference_s</span><span class="p">)</span>
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">squared_difference</span><span class="p">)</span>
 
     <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">)</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -999,19 +995,24 @@ epoch : 100, loss : 46.61545
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset created!!
+Dataset size 10000
+</pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Training<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Training<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Train the model on exact same data which is used in the Deep Learning method using the new model and new loss defined.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">BATCH_SIZE</span>                  <span class="o">=</span> <span class="mi">16</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>                  <span class="o">=</span> <span class="mi">16</span>
 <span class="n">model_v_s_supervisedPhy</span>     <span class="o">=</span> <span class="n">PhysicsNewtonNet</span><span class="p">()</span>
 <span class="n">train_dataloader_v_s</span>        <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">optimizer_v_s_supervisedPhy</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
-<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">)</span>
+<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">)</span>
 <span class="n">epochs</span>                      <span class="o">=</span> <span class="mi">100</span>
 <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 <span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
@@ -1019,18 +1020,18 @@ epoch : 100, loss : 46.61545
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 10554.98278
-epoch : 10, loss : 6607.95126
-epoch : 20, loss : 6566.04211
-epoch : 30, loss : 6556.13036
-epoch : 40, loss : 6531.20437
-epoch : 50, loss : 6537.49586
-epoch : 60, loss : 6521.22755
-epoch : 70, loss : 6489.62591
-epoch : 80, loss : 6511.62524
-epoch : 90, loss : 6506.54663
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 9919.27278
+epoch : 10, loss : 540.61859
+epoch : 20, loss : 238.72540
+epoch : 30, loss : 205.75346
+epoch : 40, loss : 192.86591
+epoch : 50, loss : 187.55922
+epoch : 60, loss : 183.59052
+epoch : 70, loss : 184.58625
+epoch : 80, loss : 178.23121
+epoch : 90, loss : 171.50321
 Done Training!
-epoch : 100, loss : 6516.95911
+epoch : 100, loss : 172.01582
 </pre></div>
 </div>
 <img alt="_images/AGentleStart_36_1.png" src="_images/AGentleStart_36_1.png" />
@@ -1046,20 +1047,20 @@ epoch : 100, loss : 6516.95911
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 6375.45091
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 158.28286
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>Inference<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Inference<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Let us perform a similar inference simulation as done previously to check how close our results are w.r.t ground truth simulation</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
 <span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">77.4356</span>
-<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
 <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
 <span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
 <span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
@@ -1077,12 +1078,11 @@ epoch : 100, loss : 6516.95911
 <h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have seen the three methods for predicting desplacement, Let us try to compare the perfromance of these methods.
 The figure below dipicts a plot for comparing the three methods according to the availability of data, showing the test loss trends w.r.t dataset size.</p>
-<div class="section" id="plot-to-be-updated">
-<h3>Plot-To-Be-Updated<a class="headerlink" href="#plot-to-be-updated" title="Permalink to this headline">¶</a></h3>
-</div>
+<p><img alt="PerformanceTrends" src="_images/performance_comp1.png" /></p>
 </div>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>The loss trends have spikes at some places due to poor convergence of the network, but overall we can conclude that Deep Learning along with physics knowledge can help predict our quantities better.</p>
 </div>
 </div>
 
