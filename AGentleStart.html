@@ -1,0 +1,1142 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Gentle Start &#8212; Physics Based Deep Learning Experiments</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to our Physics based Deep Learning Experiments" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_phy.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Physics Based Deep Learning Experiments</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to our Physics based Deep Learning Experiments
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   A Gentle Start
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/AGentleStart.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAGentleStart.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/AGentleStart.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-simulation">
+   The Simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   The Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#only-physics">
+   Only Physics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#only-deep-learing">
+   Only Deep Learing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-model-and-loss">
+     Dataset, Model and Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference">
+     Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physics-deep-learning">
+   Physics + Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-physics-based-loss">
+     Supervised + Physics based loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-and-loss">
+     Model and Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison">
+   Comparison
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-to-be-updated">
+     Plot-To-Be-Updated
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>A Gentle Start</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-simulation">
+   The Simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-data">
+   The Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#only-physics">
+   Only Physics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#only-deep-learing">
+   Only Deep Learing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-model-and-loss">
+     Dataset, Model and Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference">
+     Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#physics-deep-learning">
+   Physics + Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-physics-based-loss">
+     Supervised + Physics based loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-and-loss">
+     Model and Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison">
+   Comparison
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-to-be-updated">
+     Plot-To-Be-Updated
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/srinath2022/physics-based-DL/blob/master/AGentleStart.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-gentle-start">
+<h1>A Gentle Start<a class="headerlink" href="#a-gentle-start" title="Permalink to this headline">¶</a></h1>
+<p>Let us start by exploring a simple physics problem of predicting the displacement covered by a vertically projected mass in presence of air. For the purpose of this experiment, we consider that the actual dynamics of the projected mass are modelled by the equations described below which account for resistance of the medium. We will generate ground truth data by applying above motion equations, then assuming we have no knowledge of the actual(with air resistance) dynamics, we perform experiments to predict the displacement in <strong>only physics</strong>, <strong>only deep learning</strong> and <strong>physics + deep learning</strong> setting.</p>
+<p><span class="math notranslate nohighlight">\(v_{term} = \sqrt{\frac{mg}{c}}\)</span>, where <span class="math notranslate nohighlight">\(c = \frac{π}{16}\rho D^2\)</span></p>
+<p>For the forward motion from the ground to the top (Ascent)</p>
+<!-- $v_t = u_0 - v_{term} tan\left(\frac{gt}{v_{term}}\right)$ -->
+<p><span class="math notranslate nohighlight">\(s_t = u_0t + \frac{v_{term}^2}{g} ln\left(cos\left(\frac{gt}{v_{term}}\right)\right) \)</span></p>
+<p><span class="math notranslate nohighlight">\(T_{ascent} = \frac{v_{term}}{g} tan^{-1}\left(\frac{u_0}{v_{term}}\right)\)</span></p>
+<p>For the return motion from the top to the ground (Descent)</p>
+<!-- $v_t = -v_{term} tanh\left(\frac{g(t-T_{ascent})}{v_{term}}\right)$ -->
+<p><span class="math notranslate nohighlight">\(s_t = H_{max}-\frac{v_{term}^2}{g} ln\left(cosh\left(\frac{g(t-T_{ascent})}{v_{term}}\right)\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(T_{descent} = \frac{v_{term}}{g} cosh^{-1}\left(e^{\frac{gH_{max}}{v_{term}^2}}\right)\)</span></p>
+<p>Total time of flight</p>
+<p><span class="math notranslate nohighlight">\(T_{flight} = T_{ascent}+T_{descent}\)</span></p>
+<p><strong>Note :</strong> As ground truth, we consider the quadratic drag model for a projectile from <a class="reference external" href="https://dynref.engr.illinois.edu/afp.html">here</a> and <a class="reference external" href="https://www.physics.udel.edu/~szalewic/teach/419/cm08ln_quad-drag.pdf">here</a>.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>The following modules, helper functions are helpful for our experiment throughout this page for visualisation, plots etc. Do not really worry about understanding them right now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span>  <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cuda:0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Effective constants</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># Mass of projectile in grams(g)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span> <span class="c1"># Acceleration due to gravity in m/s^2</span>
+<span class="n">density</span> <span class="o">=</span> <span class="mf">1.225</span> <span class="c1"># Air density is 1.225 kg/m^3</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Diameter of the projected object in cm</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">density</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="n">D</span><span class="p">)</span>
+<span class="n">v_term</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">10</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">g</span><span class="p">))</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the simulation</span>
+<span class="k">def</span> <span class="nf">plot_simulation</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">D_TYPE</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Plot for </span><span class="si">{</span><span class="n">D_TYPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual values&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the train loss curve</span>
+<span class="k">def</span> <span class="nf">loss_plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">losses</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-simulation">
+<h2>The Simulation<a class="headerlink" href="#the-simulation" title="Permalink to this headline">¶</a></h2>
+<p>We first show a simulation of the proposed particle mass using the above equations for a given initial velocity to get an idea of how the displacement varies with time. We will first calculate the time of flight(<span class="math notranslate nohighlight">\(T_{flight}\)</span>) for the particle, then record displacement covered at each time step starting from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(T_{flight}\)</span> in step sizes of <span class="math notranslate nohighlight">\(\frac{1}{5}s\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">time_of_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">medium</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;VACCUM&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">u_initial</span><span class="o">/</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+  <span class="k">elif</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">:</span>
+    <span class="n">T_ascent</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_term</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">u_initial</span><span class="o">/</span><span class="n">v_term</span><span class="p">)</span>
+    <span class="n">H_max</span> <span class="o">=</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">T_ascent</span> <span class="o">+</span> <span class="p">((</span><span class="n">v_term</span><span class="o">*</span><span class="n">v_term</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="n">T_ascent</span><span class="p">)</span><span class="o">/</span><span class="n">v_term</span><span class="p">))</span>
+    <span class="n">T_descent</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_term</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">acosh</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="n">H_max</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v_term</span><span class="o">*</span><span class="n">v_term</span><span class="p">)))</span>
+    <span class="n">T_flight</span> <span class="o">=</span> <span class="n">T_ascent</span><span class="o">+</span><span class="n">T_descent</span>
+    <span class="k">return</span> <span class="n">T_flight</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;UNK&quot;</span>
+
+<span class="c1"># Velocity of the particle at time step T. Initial velocity of the particle is u.</span>
+<span class="k">def</span> <span class="nf">velocity_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;VACCUM&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">u_initial</span> <span class="o">-</span> <span class="n">g</span><span class="o">*</span><span class="n">t</span>
+  <span class="k">elif</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">:</span>
+    <span class="n">T_ascent</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_term</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">u_initial</span><span class="o">/</span><span class="n">v_term</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">T_ascent</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">u_initial</span> <span class="o">-</span> <span class="n">v_term</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">v_term</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">u_initial</span><span class="o">*</span><span class="mf">0.0</span><span class="o">-</span> <span class="n">v_term</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">tanh</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">T_ascent</span><span class="p">))</span><span class="o">/</span><span class="n">v_term</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;UNK&quot;</span>
+
+<span class="c1"># Displacement by the particle</span>
+<span class="k">def</span> <span class="nf">displacement_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;VACCUM&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">t</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span>
+  <span class="k">elif</span> <span class="n">medium</span><span class="o">==</span><span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">:</span>
+    <span class="n">T_ascent</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_term</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">u_initial</span><span class="o">/</span><span class="n">v_term</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">T_ascent</span><span class="p">:</span>
+      <span class="n">s_t</span> <span class="o">=</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="p">((</span><span class="n">v_term</span><span class="o">*</span><span class="n">v_term</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">v_term</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">s_t</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">H_max</span> <span class="o">=</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">T_ascent</span> <span class="o">+</span> <span class="p">((</span><span class="n">v_term</span><span class="o">*</span><span class="n">v_term</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="n">T_ascent</span><span class="p">)</span><span class="o">/</span><span class="n">v_term</span><span class="p">))</span>
+      <span class="n">s_t</span> <span class="o">=</span> <span class="n">H_max</span> <span class="o">-</span> <span class="p">((</span><span class="n">v_term</span><span class="o">*</span><span class="n">v_term</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cosh</span><span class="p">((</span><span class="n">g</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">T_ascent</span><span class="p">))</span><span class="o">/</span><span class="n">v_term</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">s_t</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;UNK&quot;</span>
+
+<span class="k">def</span> <span class="nf">simulate_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">medium</span><span class="p">):</span>
+  <span class="n">T</span> <span class="o">=</span>  <span class="n">time_of_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span> <span class="c1"># time of flight</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">velocities</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="c1"># calculate velocity at evert time step (of one second interval)</span>
+  <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">:</span>
+    <span class="n">v_t</span> <span class="o">=</span> <span class="n">velocity_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+    <span class="n">s_t</span> <span class="o">=</span> <span class="n">displacement_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">velocities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_t</span><span class="p">)</span>
+    <span class="n">displacements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have just finished our code for simulation. Let us go ahead and actually generate simulations below. Feel free to modify the initial velocity to get a glance of the diaplacement trends w.r.t time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">medium</span> <span class="o">=</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span>
+<span class="n">u_initial</span> <span class="o">=</span> <span class="mf">117.92</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+<span class="n">plot_simulation</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/AGentleStart_11_0.png" src="_images/AGentleStart_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="the-data">
+<h2>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a physics simulation, let us run few simulations and collect the data. i,e we input few random initial velocities, times and get the corresponding displacements during the flight.</p>
+<p>For this specific task, let us keep the initial velocities between <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(100\)</span> and time step range betwen <span class="math notranslate nohighlight">\(0\)</span> to time of flight <span class="math notranslate nohighlight">\(T_{flight}\)</span></p>
+<div class="math notranslate nohighlight">
+\[u_0 \in (0, 100)\]</div>
+<p>The collected data would look like this, <span class="math notranslate nohighlight">\(X, Y\)</span> where
+<span class="math notranslate nohighlight">\(X = (u, t), Y = (s_t)\)</span><br />
+<span class="math notranslate nohighlight">\(u, t\)</span> represent initial velocity and time step, where as <span class="math notranslate nohighlight">\(S_t\)</span> represents displacement covered after time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>We will also split the dataset collected into train and test respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Min and Max of initial velocity (in m/s)</span>
+<span class="n">U0_MIN</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">U0_MAX</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">def</span> <span class="nf">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="n">D_TYPE</span><span class="p">,</span> <span class="n">medium</span><span class="p">,</span> <span class="n">U0_MIN</span><span class="o">=</span><span class="n">U0_MIN</span><span class="p">,</span> <span class="n">U0_MAX</span><span class="o">=</span><span class="n">U0_MAX</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">D_TYPE</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">]:</span>
+    <span class="k">return</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">):</span>
+    <span class="n">u0</span> <span class="o">=</span> <span class="n">U0_MIN</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U0_MAX</span> <span class="o">-</span> <span class="n">U0_MIN</span><span class="p">)</span>
+    <span class="n">T</span>   <span class="o">=</span> <span class="n">time_of_flight</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+    <span class="n">t</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span>
+    <span class="n">v_t</span> <span class="o">=</span> <span class="n">velocity_t</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+    <span class="n">s_t</span> <span class="o">=</span> <span class="n">displacement_t</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span>
+
+    <span class="c1"># create a data point</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">:</span>
+      <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v_t</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">:</span>
+      <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s_t</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">:</span>
+      <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v_t</span><span class="p">,</span> <span class="n">s_t</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">return</span>
+
+    <span class="c1"># print(Y)</span>
+    <span class="n">datapoint</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">]),</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datapoint</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset created!!&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset size&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">data</span>
+
+<span class="n">N_DATA_SAMPLES</span>      <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">dataset</span>             <span class="o">=</span> <span class="n">create_data</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+<span class="n">dataset_train</span>  <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)]</span>
+<span class="n">dataset_test</span>   <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N_DATA_SAMPLES</span><span class="o">*</span><span class="mf">0.8</span><span class="p">):]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset created!!
+Dataset size 10000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="only-physics">
+<h2>Only Physics<a class="headerlink" href="#only-physics" title="Permalink to this headline">¶</a></h2>
+<p>We assume that we are not aware of the exact dynamics followed by the particle in the generated data, however we know the equations of motion followed by a particle in vaccum. Using this physics knowledge of ours, let us try to predict the displacement and compare our prediction with the ground truth.</p>
+<p>The equations of motion for a vertically projected particle mass in vaccum are as follows.</p>
+<p><span class="math notranslate nohighlight">\(S_t = u_0t-\frac{1}{2}gt^2\)</span>, where <span class="math notranslate nohighlight">\(g \sim 10 \frac{m}{s^2}\)</span></p>
+<p>In the following code, we write our prediction function just based on physics, use it to create a simulation and also calculate the loss on the test datset which we have created earlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The physics model</span>
+<span class="k">def</span> <span class="nf">physics_displacement_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+  <span class="n">s_t</span> <span class="o">=</span> <span class="n">u_initial</span><span class="o">*</span><span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span>
+  <span class="k">return</span> <span class="n">s_t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us now compare our predictions with the ground truth by varying the initial velocity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">physics_simulation</span><span class="p">(</span><span class="n">u_initial</span><span class="p">):</span>
+  <span class="n">T</span> <span class="o">=</span>  <span class="n">time_of_flight</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="s2">&quot;AIR_QUADRATIC_DRAG&quot;</span><span class="p">)</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">:</span>
+    <span class="n">s_t</span> <span class="o">=</span> <span class="n">physics_displacement_t</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">displacements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">displacements</span>
+  
+<span class="n">u0</span> <span class="o">=</span> <span class="mf">97.223</span>
+<span class="n">m_times</span><span class="p">,</span> <span class="n">m_displacements</span> <span class="o">=</span> <span class="n">physics_simulation</span><span class="p">(</span><span class="n">u0</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span> <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="s2">&quot;AIR_QUADRATIC_DRAG&quot;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">m_displacements</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/AGentleStart_17_0.png" src="_images/AGentleStart_17_0.png" />
+</div>
+</div>
+<p>To get some quantitative estimation and also to compae various methods, we will go ahead and calculate the loss of our physics based prediction w.r.t the ground truth data. We will be using the standard MSE Loss.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">physics_model_loss</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">):</span>
+  <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">)</span>
+  <span class="n">total_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">data_point</span> <span class="ow">in</span> <span class="n">test_dataset</span><span class="p">:</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">data_point</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">physics_displacement_t</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">prediction</span><span class="o">-</span><span class="n">actual</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">prediction</span><span class="o">-</span><span class="n">actual</span><span class="p">)</span>
+    <span class="n">total_loss</span> <span class="o">=</span> <span class="n">total_loss</span><span class="o">+</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+  
+  <span class="k">return</span> <span class="n">total_loss</span><span class="o">/</span><span class="n">N</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Only Physics Loss &quot;</span><span class="p">,</span> <span class="n">physics_model_loss</span><span class="p">(</span><span class="n">dataset_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Only Physics Loss  19118.704045425322
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="only-deep-learing">
+<h2>Only Deep Learing<a class="headerlink" href="#only-deep-learing" title="Permalink to this headline">¶</a></h2>
+<p>Now, we try to leverage our modern deep learning techniques to predict the displacement. We will use a simple MLP for the prediction. We start by defining the dataset, model and loss employed.</p>
+<div class="section" id="dataset-model-and-loss">
+<h3>Dataset, Model and Loss<a class="headerlink" href="#dataset-model-and-loss" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataset</span>
+<span class="k">class</span> <span class="nc">PhysicsData</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+  <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Simple model for predicting Displacement</span>
+<span class="k">class</span> <span class="nc">NewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+    
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="c1"># Define custom loss</span>
+<span class="k">class</span> <span class="nc">CustomMSELoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">CustomMSELoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">mseLoss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mseLoss</span><span class="p">(</span><span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h3>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h3>
+<p>Next, we write the appropriate training module to train, test any generic model with specified parameters and train the network on our collected dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training</span>
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+  <span class="n">all_epochs</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">all_losses</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">):</span>
+      <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>  <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">X</span>     <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">Y</span>     <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">X</span>     <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+      <span class="n">Y</span>     <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+      <span class="n">Y_predicted</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+      <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">epoch_loss</span><span class="o">+</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+      <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch : </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">, loss : </span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">epoch</span><span class="o">%</span><span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch : </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, loss : </span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">all_epochs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">all_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">))</span>
+  
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done Training!&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch : </span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s2">, loss : </span><span class="si">{</span><span class="n">epoch_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">)</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">all_losses</span><span class="p">,</span> <span class="n">all_epochs</span>
+
+<span class="c1"># Testing</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_dataloader</span><span class="p">,</span> <span class="n">criterion</span><span class="p">):</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+  <span class="n">total_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">):</span>
+      <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>  <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">X</span>     <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">Y</span>     <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="n">X</span>     <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+      <span class="n">Y</span>     <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+      <span class="n">Y_predicted</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+      <span class="n">total_loss</span> <span class="o">=</span> <span class="n">total_loss</span><span class="o">+</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+  <span class="n">avarage_loss</span> <span class="o">=</span> <span class="n">total_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_dataloader</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average loss : </span><span class="si">{</span><span class="n">avarage_loss</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">avarage_loss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BATCH_SIZE</span>          <span class="o">=</span> <span class="mi">16</span>
+<span class="n">model_s</span>             <span class="o">=</span> <span class="n">NewtonNet</span><span class="p">()</span>
+<span class="n">train_dataloader_s</span>  <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">optimizer_s</span>         <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_s</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
+<span class="n">criterion</span>           <span class="o">=</span> <span class="n">CustomMSELoss</span><span class="p">()</span>
+<span class="n">epochs</span>              <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">model_s</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_s</span><span class="p">,</span> <span class="n">train_dataloader_s</span><span class="p">,</span> <span class="n">optimizer_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 9625.32639
+epoch : 10, loss : 677.39858
+epoch : 20, loss : 488.64261
+epoch : 30, loss : 193.72199
+epoch : 40, loss : 146.73181
+epoch : 50, loss : 141.98816
+epoch : 60, loss : 136.46464
+epoch : 70, loss : 128.80924
+epoch : 80, loss : 73.16735
+epoch : 90, loss : 56.78242
+Done Training!
+epoch : 100, loss : 46.61545
+</pre></div>
+</div>
+<img alt="_images/AGentleStart_25_1.png" src="_images/AGentleStart_25_1.png" />
+</div>
+</div>
+<p>Looks like our training has finished. Let us see how well it performs on the test data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
+<span class="n">test_dataloader_s</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">avg_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model_s</span><span class="p">,</span> <span class="n">test_dataloader_s</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 51.13923
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h3>
+<p>It is important for us to visualise how our trained model predictions look when compared to the ground truth. So let us write code to infer the displacement from a trained network and use it to generate the entire simulation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">single_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+  <span class="nb">input</span>   <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">]])</span>
+  <span class="nb">input</span>   <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="nb">input</span>   <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">output</span>  <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+  <span class="n">output</span>  <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+  <span class="k">if</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;VELOCITY&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span>
+  <span class="k">elif</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">elif</span> <span class="n">D_TYPE</span><span class="o">==</span><span class="s1">&#39;VELOCITY_DISPLACEMENT&#39;</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">simulation_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">medium</span><span class="p">):</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">T</span> <span class="o">=</span> <span class="n">time_of_flight</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">medium</span><span class="p">)</span> <span class="c1"># time of flight</span>
+  <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">velocities</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">displacements</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="c1"># calculate velocity at evert time step (of one second interval)</span>
+  <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">T</span><span class="p">:</span>
+    <span class="n">v_t</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">s_t</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">v_t</span><span class="p">,</span> <span class="n">s_t</span> <span class="o">=</span> <span class="n">single_inference</span><span class="p">(</span><span class="n">D_TYPE</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">velocities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_t</span><span class="p">)</span>
+    <span class="n">displacements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the following code to test and visualise how our trained model performs w.r.t various initial velocities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">87.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_s</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/AGentleStart_31_0.png" src="_images/AGentleStart_31_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="physics-deep-learning">
+<h2>Physics + Deep Learning<a class="headerlink" href="#physics-deep-learning" title="Permalink to this headline">¶</a></h2>
+<p>As we have tried both physics based approach as well as deep learning based appraoch. Let us now combine both of them to train a network which used deep learning as well as the physics. One way to induct physics into DL is by adding appropriate loss function, similar to the below one.</p>
+<div class="section" id="supervised-physics-based-loss">
+<h3>Supervised + Physics based loss<a class="headerlink" href="#supervised-physics-based-loss" title="Permalink to this headline">¶</a></h3>
+<p>Let us try out including both supervision and physics to guide our learning. We will use the following loss function.</p>
+<p><span class="math notranslate nohighlight">\(L_{supervised+phy} = (s_{predicted}-s_{actual})^2+\gamma*(s_{predicted}-(u_{initial}t-\frac{1}{2}*g*t^2))^2\)</span></p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> is used to control weightage given to the physics term.</p>
+</div>
+<div class="section" id="model-and-loss">
+<h3>Model and Loss<a class="headerlink" href="#model-and-loss" title="Permalink to this headline">¶</a></h3>
+<p>Let use define a new model and the loss function for this method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PhysicsNewtonNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+    
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">class</span> <span class="nc">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Y_predicted</span><span class="p">,</span> <span class="n">Y_actual</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">s_predicted</span> <span class="o">=</span> <span class="n">Y_predicted</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">u_initial</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">t_data</span>    <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># supervised s term</span>
+    <span class="n">s_actual</span> <span class="o">=</span> <span class="n">Y_actual</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">s_predicted</span><span class="p">,</span> <span class="n">s_actual</span><span class="p">)</span>
+    <span class="n">squared_difference_s</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_s</span><span class="p">)</span>
+
+    <span class="c1"># s from u, t</span>
+    <span class="n">ut</span>        <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">u_initial</span><span class="p">,</span> <span class="n">t_data</span><span class="p">)</span>
+    <span class="n">half_gt2</span>  <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">t_data</span><span class="p">,</span> <span class="n">t_data</span><span class="p">)</span>
+    <span class="n">s_physics</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">ut</span><span class="p">,</span> <span class="n">half_gt2</span><span class="p">)</span>
+    <span class="n">difference_s_phy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">s_predicted</span><span class="p">,</span> <span class="n">s_physics</span><span class="p">)</span>
+    <span class="n">squared_difference_s_phy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference_s_phy</span><span class="p">)</span>
+
+    <span class="n">sqr_diff_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">squared_difference_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">squared_difference_s_phy</span><span class="p">)</span>
+
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sqr_diff_sum</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Training<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Train the model on exact same data which is used in the Deep Learning method using the new model and new loss defined.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">BATCH_SIZE</span>                  <span class="o">=</span> <span class="mi">16</span>
+<span class="n">model_v_s_supervisedPhy</span>     <span class="o">=</span> <span class="n">PhysicsNewtonNet</span><span class="p">()</span>
+<span class="n">train_dataloader_v_s</span>        <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">optimizer_v_s_supervisedPhy</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.005</span><span class="p">)</span>
+<span class="n">criterion</span>                   <span class="o">=</span> <span class="n">SupervisedPlusPhysicsBasedLoss</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">)</span>
+<span class="n">epochs</span>                      <span class="o">=</span> <span class="mi">100</span>
+<span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">,</span> <span class="n">t_epochs</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">train_dataloader_v_s</span><span class="p">,</span> <span class="n">optimizer_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<span class="n">loss_plot</span><span class="p">(</span><span class="n">t_epochs</span><span class="p">,</span> <span class="n">t_loss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch : 0, loss : 10554.98278
+epoch : 10, loss : 6607.95126
+epoch : 20, loss : 6566.04211
+epoch : 30, loss : 6556.13036
+epoch : 40, loss : 6531.20437
+epoch : 50, loss : 6537.49586
+epoch : 60, loss : 6521.22755
+epoch : 70, loss : 6489.62591
+epoch : 80, loss : 6511.62524
+epoch : 90, loss : 6506.54663
+Done Training!
+epoch : 100, loss : 6516.95911
+</pre></div>
+</div>
+<img alt="_images/AGentleStart_36_1.png" src="_images/AGentleStart_36_1.png" />
+</div>
+</div>
+<p>Calculate the test loss on the test dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test loss</span>
+<span class="n">test_dataloader_supervisedPhy</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">avg_loss</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">test_dataloader_supervisedPhy</span><span class="p">,</span> <span class="n">criterion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average loss : 6375.45091
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Inference<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Let us perform a similar inference simulation as done previously to check how close our results are w.r.t ground truth simulation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run simulation and compare</span>
+<span class="n">U_INITIAL</span> <span class="o">=</span> <span class="mf">77.4356</span>
+<span class="n">times_p</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="n">displacements_p</span>  <span class="o">=</span> <span class="n">simulation_inference</span><span class="p">(</span><span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">,</span> <span class="n">model_v_s_supervisedPhy</span><span class="p">,</span> <span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
+<span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">displacements</span>        <span class="o">=</span> <span class="n">simulate_flight</span><span class="p">(</span><span class="n">U_INITIAL</span><span class="p">,</span> <span class="s1">&#39;AIR_QUADRATIC_DRAG&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">velocities_p</span><span class="p">,</span> <span class="s1">&#39;VELOCITY&#39;</span><span class="p">)</span>
+<span class="n">compare_plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">displacements</span><span class="p">,</span> <span class="n">displacements_p</span><span class="p">,</span> <span class="s1">&#39;DISPLACEMENT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/AGentleStart_40_0.png" src="_images/AGentleStart_40_0.png" />
+<img alt="_images/AGentleStart_40_1.png" src="_images/AGentleStart_40_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have seen the three methods for predicting desplacement, Let us try to compare the perfromance of these methods.
+The figure below dipicts a plot for comparing the three methods according to the availability of data, showing the test loss trends w.r.t dataset size.</p>
+<div class="section" id="plot-to-be-updated">
+<h3>Plot-To-Be-Updated<a class="headerlink" href="#plot-to-be-updated" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to our Physics based Deep Learning Experiments</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By UCLA VMG Group<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
