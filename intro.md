@@ -79,17 +79,23 @@ The following figure shows a typical trajectory predicted by physics vs the actu
 Now, we try to leverage our modern deep learning techniques to predict the quantities. We will use a simple MLP for the prediction. We start by defining the model and loss employed.
 
 We used a simple model with the folowing architecture.
-<!-- TO-DO -->
 
 The loss employed is the standard MSE loss.
 
 After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.
 
-![onlydldisplacement](onlydldisplacement.png)
+![onlydldisplacement](dl_disp.png)
 
 ## Physics + Deep Learning
 
-As we have tried both physics based approach as well as deep learning based appraoch. Let us now combine both of them to train a network which used deep learning as well as the physics. One way to induct physics into DL is by adding appropriate loss function, similar to the below one.
+Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair ($u_{init}, t$), and output pair ($ v_{t}, s_{t}$). We will first pass the input pair into the physics model to predict the output (($ v_{t}^{phy}, s_{t}^{phy}$)). We concatenate this ouput and input pair ( $u_{init}, t, v_{t}^{phy}, s_{t}^{phy}$ ), and submit this input to our DL model to predict the output  ($ v_{t}^{pred}, s_{t}$^{pred}).
+![blockDiagram](Physics_DL_drawio.png)
+
+ The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
+
+![onlydldisplacement_DL_physics](dlphysics_disp.png)
+
+So By inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods. 
 
 ## Comparison
 
