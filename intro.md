@@ -108,3 +108,5 @@ The figure below dipicts a plot for comparing the three methods according to the
 ## Conclusion
 
 The loss trends have spikes at some places due to poor convergence of the network, but overall we can conclude that Deep Learning along with physics knowledge can help predict our quantities better.
+
+For experiments, you can have a look at the following jupyter [notebook](https://colab.research.google.com/drive/1bqbEuu8CHm76SXQYgMfZDrpbSVnuKvKa?usp=sharing).
