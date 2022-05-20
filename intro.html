@@ -51,9 +51,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A Gentle Start" href="AGentleStart.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -97,14 +98,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="AGentleStart.html">
-   A Gentle Start
-  </a>
- </li>
-</ul>
-
     </div>
 </nav> <!-- To handle the deprecated key -->
 
@@ -185,6 +178,61 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Welcome to our Physics based Deep Learning Experiments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-gentle-start">
+   A Gentle Start
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-simulation">
+     The Simulation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     The Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-physics">
+     Only Physics
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-deep-learing">
+     Only Deep Learing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physics-deep-learning">
+     Physics + Deep Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison">
+     Comparison
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -197,6 +245,61 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Welcome to our Physics based Deep Learning Experiments
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-gentle-start">
+   A Gentle Start
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-simulation">
+     The Simulation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     The Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-physics">
+     Only Physics
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#only-deep-learing">
+     Only Deep Learing
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#physics-deep-learning">
+     Physics + Deep Learning
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison">
+     Comparison
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -207,10 +310,72 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Welcome to our Physics based Deep Learning Experiments<a class="headerlink" href="#welcome-to-our-physics-based-deep-learning-experiments" title="Permalink to this headline">¶</a></h1>
 <p>Hello there!!, we are planning on a set of experiments involving physics based deep learning. We begin by setting up a toy physical simulation and setup a task that can be completed via physics alone
 and eventually add complexities to the system and try to leverage deep learning.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="AGentleStart.html">A Gentle Start</a></li>
-</ul>
+<!-- ```{tableofcontents}
+``` -->
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="a-gentle-start">
+<h1>A Gentle Start<a class="headerlink" href="#a-gentle-start" title="Permalink to this headline">¶</a></h1>
+<p>Let us start by exploring a simple physics problem of predicting the displacement covered by a vertically projected mass in presence of air. For the purpose of this experiment, we consider that the actual dynamics of the projected mass are modelled by the equations described below which account for resistance of the medium. We will generate ground truth data by applying above motion equations, then assuming we have no knowledge of the actual(with air resistance) dynamics, we perform experiments to predict the displacement in <strong>only physics</strong>, <strong>only deep learning</strong> and <strong>physics + deep learning</strong> setting.</p>
+<p><span class="math notranslate nohighlight">\(v_{term} = \sqrt{\frac{mg}{c}}\)</span>, where <span class="math notranslate nohighlight">\(c = \frac{π}{16}\rho D^2\)</span></p>
+<p>For the forward motion from the ground to the top (Ascent)</p>
+<!-- $v_t = u_0 - v_{term} tan\left(\frac{gt}{v_{term}}\right)$ -->
+<p><span class="math notranslate nohighlight">\(s_t = u_0t + \frac{v_{term}^2}{g} ln\left(cos\left(\frac{gt}{v_{term}}\right)\right) \)</span></p>
+<p><span class="math notranslate nohighlight">\(T_{ascent} = \frac{v_{term}}{g} tan^{-1}\left(\frac{u_0}{v_{term}}\right)\)</span></p>
+<p>For the return motion from the top to the ground (Descent)</p>
+<!-- $v_t = -v_{term} tanh\left(\frac{g(t-T_{ascent})}{v_{term}}\right)$ -->
+<p><span class="math notranslate nohighlight">\(s_t = H_{max}-\frac{v_{term}^2}{g} ln\left(cosh\left(\frac{g(t-T_{ascent})}{v_{term}}\right)\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(T_{descent} = \frac{v_{term}}{g} cosh^{-1}\left(e^{\frac{gH_{max}}{v_{term}^2}}\right)\)</span></p>
+<p>Total time of flight</p>
+<p><span class="math notranslate nohighlight">\(T_{flight} = T_{ascent}+T_{descent}\)</span></p>
+<p><strong>Note :</strong> As ground truth, we consider the quadratic drag model for a projectile from <a class="reference external" href="https://dynref.engr.illinois.edu/afp.html">here</a> and <a class="reference external" href="https://www.physics.udel.edu/~szalewic/teach/419/cm08ln_quad-drag.pdf">here</a>.</p>
+<div class="section" id="the-simulation">
+<h2>The Simulation<a class="headerlink" href="#the-simulation" title="Permalink to this headline">¶</a></h2>
+<p>We first show a simulation of the proposed particle mass using the above equations for a given initial velocity to get an idea of how the displacement varies with time. We will first calculate the time of flight(<span class="math notranslate nohighlight">\(T_{flight}\)</span>) for the particle, then record displacement covered at each time step starting from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(T_{flight}\)</span> in step sizes of <span class="math notranslate nohighlight">\(\frac{1}{5}s\)</span>.</p>
+<p>We consider a spherical particle of mass 30g, diameter 2 cm and air density as <span class="math notranslate nohighlight">\(1.225 \frac{kg}{m^3}\)</span> for this simulation.</p>
+<p><img alt="simulation" src="_images/simulation.png" /></p>
+</div>
+<div class="section" id="the-data">
+<h2>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a physics simulation, let us run few simulations and collect the data. i,e we input few random initial velocities, times and get the corresponding displacements during the flight.</p>
+<p>For this specific task, let us keep the initial velocities between <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(100\)</span> and time step range betwen <span class="math notranslate nohighlight">\(0\)</span> to time of flight <span class="math notranslate nohighlight">\(T_{flight}\)</span></p>
+<div class="math notranslate nohighlight">
+\[u_0 \in (0, 100)\]</div>
+<p>The collected data would look like this, <span class="math notranslate nohighlight">\(X, Y\)</span> where
+<span class="math notranslate nohighlight">\(X = (u, t), Y = (s_t)\)</span><br />
+<span class="math notranslate nohighlight">\(u, t\)</span> represent initial velocity and time step, where as <span class="math notranslate nohighlight">\(S_t\)</span> represents displacement covered after time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>We create a dataset of 10000 points and split the dataset collected into train(80%) and test(20%) respectively.</p>
+</div>
+<div class="section" id="only-physics">
+<h2>Only Physics<a class="headerlink" href="#only-physics" title="Permalink to this headline">¶</a></h2>
+<p>We assume that we are not aware of the exact dynamics followed by the particle in the generated data, however we know the equations of motion followed by a particle in vaccum. Using this physics knowledge of ours, let us try to predict the displacement and compare our prediction with the ground truth.</p>
+<p>The equations of motion for a vertically projected particle mass in vaccum are as follows.</p>
+<p><span class="math notranslate nohighlight">\(S_t = u_0t-\frac{1}{2}gt^2\)</span>, where <span class="math notranslate nohighlight">\(g \sim 10 \frac{m}{s^2}\)</span></p>
+<p>We write our prediction function just based on physics, use it to create a simulation and also calculate the loss on the test datset which we have created earlier.</p>
+<p>The following figure shows a typical trajectory predicted by physics vs the actual trajectory.</p>
+<p><img alt="onlyphysics" src="_images/onlyphysics.png" /></p>
+</div>
+<div class="section" id="only-deep-learing">
+<h2>Only Deep Learing<a class="headerlink" href="#only-deep-learing" title="Permalink to this headline">¶</a></h2>
+<p>Now, we try to leverage our modern deep learning techniques to predict the quantities. We will use a simple MLP for the prediction. We start by defining the model and loss employed.</p>
+<p>We used a simple model with the folowing architecture.</p>
+<!-- TO-DO -->
+<p>The loss employed is the standard MSE loss.</p>
+<p>After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.</p>
+<p><img alt="onlydldisplacement" src="_images/onlydldisplacement.png" /></p>
+</div>
+<div class="section" id="physics-deep-learning">
+<h2>Physics + Deep Learning<a class="headerlink" href="#physics-deep-learning" title="Permalink to this headline">¶</a></h2>
+<p>As we have tried both physics based approach as well as deep learning based appraoch. Let us now combine both of them to train a network which used deep learning as well as the physics. One way to induct physics into DL is by adding appropriate loss function, similar to the below one.</p>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have seen the three methods for predicting desplacement, Let us try to compare the perfromance of these methods.
+The figure below dipicts a plot for comparing the three methods according to the availability of data, showing the test loss trends w.r.t dataset size.</p>
+<p><img alt="PerformanceTrends" src="_images/comparison.png" /></p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>The loss trends have spikes at some places due to poor convergence of the network, but overall we can conclude that Deep Learning along with physics knowledge can help predict our quantities better.</p>
 </div>
 </div>
 
@@ -239,13 +404,6 @@ and eventually add complexities to the system and try to leverage deep learning.
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="AGentleStart.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">A Gentle Start</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             
         </div>
