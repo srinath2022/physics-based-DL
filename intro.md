@@ -88,7 +88,8 @@ After training a few epochs, the loss converged. Using this trained model, we cr
 
 ## Physics + Deep Learning
 
-Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair ($u_{init}, t$), and output pair ($ v_{t}, s_{t}$). We will first pass the input pair into the physics model to predict the output (($ v_{t}^{phy}, s_{t}^{phy}$)). We concatenate this ouput and input pair ( $u_{init}, t, v_{t}^{phy}, s_{t}^{phy}$ ), and submit this input to our DL model to predict the output  ($ v_{t}^{pred}, s_{t}$^{pred}).
+Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair ($u_{init}, t$), and output pair ($ v_{t}, s_{t}$). We will first pass the input pair into the physics model to predict the output (($ v_{t}^{phy}, s_{t}^{phy}$)). We concatenate this ouput and input pair ( $u_{init}, t, v_{t}^{phy}, s_{t}^{phy}$ ), and submit this input to our DL model to predict the output  ($ v_{t}^{pred}, s_{t}^{pred}$).
+
 ![blockDiagram](Physics_DL_drawio.png)
 
  The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
