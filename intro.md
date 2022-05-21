@@ -57,7 +57,7 @@ The collected data would look like this, $X, Y$ where
 $X = (u, t), Y = (s_t)$   
 $u, t$ represent initial velocity and time step, where as $S_t$ represents displacement covered after time $t$.
 
-We create a dataset of 10000 points and split the dataset collected into train(80%) and test(20%) respectively.
+We create varied size datasets of points and split the dataset collected into train and test respectively.
 
 ## Only Physics
 
@@ -78,7 +78,25 @@ The following figure shows a typical trajectory predicted by physics vs the actu
 
 Now, we try to leverage our modern deep learning techniques to predict the quantities. We will use a simple MLP for the prediction. We start by defining the model and loss employed.
 
-We used a simple model with the folowing architecture.
+We used a simple model with the following architecture, The first layer takes 2 inputs($u_{initial}, t$)
+
+<pre>
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Linear-1                [-1, 1, 16]              48
+              ReLU-2                [-1, 1, 16]               0
+            Linear-3                [-1, 1, 16]             272
+              ReLU-4                [-1, 1, 16]               0
+            Linear-5                [-1, 1, 16]             272
+              ReLU-6                [-1, 1, 16]               0
+            Linear-7                 [-1, 1, 2]              34
+================================================================
+Total params: 626
+Trainable params: 626
+Non-trainable params: 0
+----------------------------------------------------------------
+</pre>
 
 The loss employed is the standard MSE loss.
 
@@ -92,11 +110,11 @@ Now Let us try physics based DL aproach for predicting the displacement. For phy
 
 ![blockDiagram](Physics_DL_drawio.png)
 
- The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
+ The architecture for the DL is similar to previous only DL method, but the input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
 
 ![onlydldisplacement_DL_physics](dlphysics_disp.png)
 
-So By inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods. 
+So by inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods. 
 
 ## Comparison
 
