@@ -102,6 +102,7 @@ The loss employed is the standard MSE loss.
 
 After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.
 We trained the model for 100 epochs with 800 data samples. The resulting average test loss over 200 test datasamples is 34.33703.
+
 ![onlydldisplacement](dl_disp.png)
 
 ## Physics + Deep Learning
