@@ -110,7 +110,7 @@ Now Let us try physics based DL aproach for predicting the displacement. For phy
 
 ![blockDiagram](Physics_DL_drawio.png)
 
- The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
+ The architecture for the DL is similar to previous only DL method, but the input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
 
 ![onlydldisplacement_DL_physics](dlphysics_disp.png)
 
