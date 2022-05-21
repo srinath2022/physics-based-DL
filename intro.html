@@ -376,16 +376,18 @@ Non-trainable params: 0
 ----------------------------------------------------------------
 </pre>
 <p>The loss employed is the standard MSE loss.</p>
-<p>After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.</p>
+<p>After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.
+We trained the model for 100 epochs with 800 data samples. The resulting average test loss over 200 test datasamples is 34.33703.</p>
 <p><img alt="onlydldisplacement" src="_images/dl_disp.png" /></p>
 </div>
 <div class="section" id="physics-deep-learning">
 <h2>Physics + Deep Learning<a class="headerlink" href="#physics-deep-learning" title="Permalink to this headline">¶</a></h2>
 <p>Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair (<span class="math notranslate nohighlight">\(u_{init}, t\)</span>), and output pair (<span class="math notranslate nohighlight">\( v_{t}, s_{t}\)</span>). We will first pass the input pair into the physics model to predict the output ((<span class="math notranslate nohighlight">\( v_{t}^{phy}, s_{t}^{phy}\)</span>)). We concatenate this ouput and input pair ( <span class="math notranslate nohighlight">\(u_{init}, t, v_{t}^{phy}, s_{t}^{phy}\)</span> ), and submit this input to our DL model to predict the output  (<span class="math notranslate nohighlight">\( v_{t}^{pred}, s_{t}^{pred}\)</span>).</p>
 <p><img alt="blockDiagram" src="_images/Physics_DL_drawio.png" /></p>
-<p>The architecture for the DL is similar to previous only DL method, but the input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals.</p>
+<p>The architecture for the DL is similar to previous only DL method, but the input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals.
+We trained the model for 100 epochs with 800 data samples. The resulting average test loss over 200 test datasamples is 9.13702.</p>
 <p><img alt="onlydldisplacement_DL_physics" src="_images/dlphysics_disp.png" /></p>
-<p>So by inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods.</p>
+<p>So by inducting the physics into the DL model, we observed that model predicted the displacements better than just DL based methods.</p>
 </div>
 <div class="section" id="comparison">
 <h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>

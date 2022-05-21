@@ -101,6 +101,7 @@ Non-trainable params: 0
 The loss employed is the standard MSE loss.
 
 After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.
+We trained the model for 100 epochs with 800 data samples. The resulting average test loss over 200 test datasamples is 34.33703.
 
 ![onlydldisplacement](dl_disp.png)
 
@@ -111,10 +112,11 @@ Now Let us try physics based DL aproach for predicting the displacement. For phy
 ![blockDiagram](Physics_DL_drawio.png)
 
  The architecture for the DL is similar to previous only DL method, but the input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
+We trained the model for 100 epochs with 800 data samples. The resulting average test loss over 200 test datasamples is 9.13702.
 
 ![onlydldisplacement_DL_physics](dlphysics_disp.png)
 
-So by inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods. 
+So by inducting the physics into the DL model, we observed that model predicted the displacements better than just DL based methods. 
 
 ## Comparison
 
