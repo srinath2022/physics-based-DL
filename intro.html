@@ -343,7 +343,7 @@ and eventually add complexities to the system and try to leverage deep learning.
 <p>The collected data would look like this, <span class="math notranslate nohighlight">\(X, Y\)</span> where
 <span class="math notranslate nohighlight">\(X = (u, t), Y = (s_t)\)</span><br />
 <span class="math notranslate nohighlight">\(u, t\)</span> represent initial velocity and time step, where as <span class="math notranslate nohighlight">\(S_t\)</span> represents displacement covered after time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>We create a dataset of 10000 points and split the dataset collected into train(80%) and test(20%) respectively.</p>
+<p>We create varied size datasets of points and split the dataset collected into train and test respectively.</p>
 </div>
 <div class="section" id="only-physics">
 <h2>Only Physics<a class="headerlink" href="#only-physics" title="Permalink to this headline">¶</a></h2>
@@ -357,15 +357,35 @@ and eventually add complexities to the system and try to leverage deep learning.
 <div class="section" id="only-deep-learing">
 <h2>Only Deep Learing<a class="headerlink" href="#only-deep-learing" title="Permalink to this headline">¶</a></h2>
 <p>Now, we try to leverage our modern deep learning techniques to predict the quantities. We will use a simple MLP for the prediction. We start by defining the model and loss employed.</p>
-<p>We used a simple model with the folowing architecture.</p>
-<!-- TO-DO -->
+<p>We used a simple model with the following architecture, The first layer takes 2 inputs(<span class="math notranslate nohighlight">\(u_{initial}, t\)</span>)</p>
+<pre>
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Linear-1                [-1, 1, 16]              48
+              ReLU-2                [-1, 1, 16]               0
+            Linear-3                [-1, 1, 16]             272
+              ReLU-4                [-1, 1, 16]               0
+            Linear-5                [-1, 1, 16]             272
+              ReLU-6                [-1, 1, 16]               0
+            Linear-7                 [-1, 1, 2]              34
+================================================================
+Total params: 626
+Trainable params: 626
+Non-trainable params: 0
+----------------------------------------------------------------
+</pre>
 <p>The loss employed is the standard MSE loss.</p>
 <p>After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.</p>
-<p><img alt="onlydldisplacement" src="_images/onlydldisplacement.png" /></p>
+<p><img alt="onlydldisplacement" src="_images/dl_disp.png" /></p>
 </div>
 <div class="section" id="physics-deep-learning">
 <h2>Physics + Deep Learning<a class="headerlink" href="#physics-deep-learning" title="Permalink to this headline">¶</a></h2>
-<p>As we have tried both physics based approach as well as deep learning based appraoch. Let us now combine both of them to train a network which used deep learning as well as the physics. One way to induct physics into DL is by adding appropriate loss function, similar to the below one.</p>
+<p>Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair (<span class="math notranslate nohighlight">\(u_{init}, t\)</span>), and output pair (<span class="math notranslate nohighlight">\( v_{t}, s_{t}\)</span>). We will first pass the input pair into the physics model to predict the output ((<span class="math notranslate nohighlight">\( v_{t}^{phy}, s_{t}^{phy}\)</span>)). We concatenate this ouput and input pair ( <span class="math notranslate nohighlight">\(u_{init}, t, v_{t}^{phy}, s_{t}^{phy}\)</span> ), and submit this input to our DL model to predict the output  (<span class="math notranslate nohighlight">\( v_{t}^{pred}, s_{t}^{pred}\)</span>).</p>
+<p><img alt="blockDiagram" src="_images/Physics_DL_drawio.png" /></p>
+<p>The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals.</p>
+<p><img alt="onlydldisplacement_DL_physics" src="_images/dlphysics_disp.png" /></p>
+<p>So by inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods.</p>
 </div>
 <div class="section" id="comparison">
 <h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
@@ -376,6 +396,7 @@ The figure below dipicts a plot for comparing the three methods according to the
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>The loss trends have spikes at some places due to poor convergence of the network, but overall we can conclude that Deep Learning along with physics knowledge can help predict our quantities better.</p>
+<p>For experiments, you can have a look at the following jupyter <a class="reference external" href="https://colab.research.google.com/drive/1bqbEuu8CHm76SXQYgMfZDrpbSVnuKvKa?usp=sharing">notebook</a>.</p>
 </div>
 </div>
 

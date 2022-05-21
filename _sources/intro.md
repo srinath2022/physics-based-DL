@@ -57,7 +57,7 @@ The collected data would look like this, $X, Y$ where
 $X = (u, t), Y = (s_t)$   
 $u, t$ represent initial velocity and time step, where as $S_t$ represents displacement covered after time $t$.
 
-We create a dataset of 10000 points and split the dataset collected into train(80%) and test(20%) respectively.
+We create varied size datasets of points and split the dataset collected into train and test respectively.
 
 ## Only Physics
 
@@ -78,18 +78,43 @@ The following figure shows a typical trajectory predicted by physics vs the actu
 
 Now, we try to leverage our modern deep learning techniques to predict the quantities. We will use a simple MLP for the prediction. We start by defining the model and loss employed.
 
-We used a simple model with the folowing architecture.
-<!-- TO-DO -->
+We used a simple model with the following architecture, The first layer takes 2 inputs($u_{initial}, t$)
+
+<pre>
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Linear-1                [-1, 1, 16]              48
+              ReLU-2                [-1, 1, 16]               0
+            Linear-3                [-1, 1, 16]             272
+              ReLU-4                [-1, 1, 16]               0
+            Linear-5                [-1, 1, 16]             272
+              ReLU-6                [-1, 1, 16]               0
+            Linear-7                 [-1, 1, 2]              34
+================================================================
+Total params: 626
+Trainable params: 626
+Non-trainable params: 0
+----------------------------------------------------------------
+</pre>
 
 The loss employed is the standard MSE loss.
 
 After training a few epochs, the loss converged. Using this trained model, we created the simulations and compared with ground truth as shown below.
 
-![onlydldisplacement](onlydldisplacement.png)
+![onlydldisplacement](dl_disp.png)
 
 ## Physics + Deep Learning
 
-As we have tried both physics based approach as well as deep learning based appraoch. Let us now combine both of them to train a network which used deep learning as well as the physics. One way to induct physics into DL is by adding appropriate loss function, similar to the below one.
+Now Let us try physics based DL aproach for predicting the displacement. For physics based DL approach, we will use the same dataset created, with the given input pair ($u_{init}, t$), and output pair ($ v_{t}, s_{t}$). We will first pass the input pair into the physics model to predict the output (($ v_{t}^{phy}, s_{t}^{phy}$)). We concatenate this ouput and input pair ( $u_{init}, t, v_{t}^{phy}, s_{t}^{phy}$ ), and submit this input to our DL model to predict the output  ($ v_{t}^{pred}, s_{t}^{pred}$).
+
+![blockDiagram](Physics_DL_drawio.png)
+
+ The architecture for the DL is similar to previous only DL method, but a input neurons are increased from 2 to 4. We used MSE loss similar to the previous DL only method to learn the residuals. 
+
+![onlydldisplacement_DL_physics](dlphysics_disp.png)
+
+So by inducting in the physics into the DL model we can observe that model predicting the displacements better than just DL based methods. 
 
 ## Comparison
 
@@ -101,3 +126,5 @@ The figure below dipicts a plot for comparing the three methods according to the
 ## Conclusion
 
 The loss trends have spikes at some places due to poor convergence of the network, but overall we can conclude that Deep Learning along with physics knowledge can help predict our quantities better.
+
+For experiments, you can have a look at the following jupyter [notebook](https://colab.research.google.com/drive/1bqbEuu8CHm76SXQYgMfZDrpbSVnuKvKa?usp=sharing).
